@@ -103,5 +103,6 @@
 8 4,6 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
 22 9,11,13,15,17 node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
 18 2,4 * * * node /scripts/jd_haier.js >> /scripts/logs/jd_haier.log 2>&1
+28 1,3 * * * node /scripts/jd_wxFans.js >> /scripts/logs/jd_wxFans.log 2>&1
 5 0 * * * python3 /jd/scripts/jd_qjd.py >> /jd/log/jd_qjd.log 2>&1\
 1 6,7 * * * python3 /jd/scripts/jd_zqfl.py >> /jd/log/jd_zqfl.log 2>&1
