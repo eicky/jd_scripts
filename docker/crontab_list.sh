@@ -30,16 +30,6 @@
 28 1-23/3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
 4 1,3 * * * node /scripts/jd_market_lottery.js >> /scripts/logs/jd_market_lottery.log 2>&1
 0 0,1 * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
-10 0,1 * * * node /scripts/jd_syj1.js >> /scripts/logs/jd_syj1.log 2>&1
-20 0,1 * * * node /scripts/jd_syj2.js >> /scripts/logs/jd_syj2.log 2>&1
-30 0,1 * * * node /scripts/jd_syj3.js >> /scripts/logs/jd_syj3.log 2>&1
-40 0,1 * * * node /scripts/jd_syj4.js >> /scripts/logs/jd_syj4.log 2>&1
-50 0,1 * * * node /scripts/jd_syj5.js >> /scripts/logs/jd_syj5.log 2>&1
-0 1,2 * * * node /scripts/jd_syj6.js >> /scripts/logs/jd_syj6.log 2>&1
-10 1,2 * * * node /scripts/jd_syj7.js >> /scripts/logs/jd_syj7.log 2>&1
-20 1,2 * * * node /scripts/jd_syj8.js >> /scripts/logs/jd_syj8.log 2>&1
-30 1,2 * * * node /scripts/jd_syj9.js >> /scripts/logs/jd_syj9.log 2>&1
-40 1,2 * * * node /scripts/jd_syj10.js >> /scripts/logs/jd_syj10.log 2>&1
 40 * * * * node /scripts/jx_mc_coin.js >> /scripts/logs/jx_mc_coin.log 2>&1
 0,30 0-23/1 * * * node /scripts/jd_live_redrain.js >> /scripts/logs/jd_live_redrain.log 2>&1
 5 3,19 * * * node /scripts/jd_unsubscribe.js >> /scripts/logs/jd_unsubscribe.log 2>&1
