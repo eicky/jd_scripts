@@ -1,4 +1,5 @@
 /*
+cron 2 9,17 * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_haier.js
 女装盲盒
 活动时间：未知
 活动地址：https://anmp.jd.com/babelDiy/Zeus/2e6SGdSEVmY18TSBeu7ewRKHmp22/index.html
