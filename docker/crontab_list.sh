@@ -111,5 +111,6 @@
 28 */6 * * * node /scripts/jd_sign.js >> /scripts/logs/jd_sign.log 2>&1
 8 0 * * * node /scripts/jd_SendBean.js >> /scripts/logs/jd_SendBean.log 2>&1
 8 4,6 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
+22 9,11,13,15,17 node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
 5 0 * * * python3 /jd/scripts/jd_qjd.py >> /jd/log/jd_qjd.log 2>&1\
 1 6,7 * * * python3 /jd/scripts/jd_zqfl.py >> /jd/log/jd_zqfl.log 2>&1
