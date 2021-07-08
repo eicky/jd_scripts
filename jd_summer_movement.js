@@ -16,7 +16,7 @@ let smashUtils;
 const summer_movement_joinjoinjoinhui = $.isNode() ? (process.env.summer_movement_joinjoinjoinhui ? process.env.summer_movement_joinjoinjoinhui : false) : ($.getdata("summer_movement_joinjoinjoinhui") ? $.getdata("summer_movement_joinjoinjoinhui") : false);;//是否入会  true 入会，false 不入会
 
 const ShHelpFlag = $.isNode() ? (process.env.summer_movement_ShHelpFlag ? process.env.summer_movement_ShHelpFlag : true) : ($.getdata("summer_movement_ShHelpFlag") ? $.getdata("summer_movement_ShHelpFlag") : true);;//是否SH助力  true 助力，false 不助力
-const ShHelpAuthorFlag = true;//是否助力作者SH  true 助力，false 不助力
+const ShHelpAuthorFlag = false;//是否助力作者SH  true 助力，false 不助力
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
@@ -44,7 +44,7 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
   }
   console.log('活动入口：京东APP-》 首页-》 右边小窗口（点我赢千元）\n' +
       '邀请好友助力：内部账号自行互助(排名靠前账号得到的机会多)\n' +
-      'SH互助：内部账号自行互助(排名靠前账号得到的机会多),多余的助力次数会默认助力作者内置助力码\n' +
+      'SH互助：内部账号自行互助(排名靠前账号得到的机会多)\n' +
       '店铺任务 已添加\n' +
       '新增 入会环境变量 默认不入会\n' +
       '活动时间：2021-07-08至2021-08-8\n' +
