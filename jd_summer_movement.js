@@ -18,9 +18,9 @@ if ($.isNode() && process.env.summer_movement_joinjoinjoinhui) {
   summer_movement_joinjoinjoinhui = process.env.summer_movement_joinjoinjoinhui;
 }
 
-let ShHelpFlag = true;//是否SH助力  true 助力，false 不助力
-if ($.isNode() && process.env.ShHelpFlag) {
-  ShHelpFlag = process.env.ShHelpFlag;
+let summer_movement_ShHelpFlag = 1;// 0不开启也不助力 1开启并助力 2开启但不助力
+if ($.isNode() && process.env.summer_movement_ShHelpFlag) {
+  summer_movement_ShHelpFlag = process.env.summer_movement_ShHelpFlag;
 }
 
 
@@ -55,11 +55,22 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
       'SH互助：内部账号自行互助(排名靠前账号得到的机会多)\n' +
       '店铺任务 已添加\n' +
       '新增 入会环境变量 默认不入会\n' +
-      '活动时间：2021-07-08至2021-08-8\n' +
-      '脚本更新时间：2021年7月8日 21点00分\n'
+      '新增 微信任务\n' +
+      '移除百元守卫战 请到help食用\n' +
+      '活动时间：2021-07-08至2021-08-08\n' +
+      '脚本更新时间：2021年7月9日 12点00分\n'
       );
       if(`${summer_movement_joinjoinjoinhui}` === "true") console.log('您设置了入会')
-      if(`${ShHelpFlag}` === "true") console.log('您设置了执行【百元守卫站SH】互助')
+      if(Number(summer_movement_ShHelpFlag) === 1){
+        console.log('您设置了 【百元守卫战SH】✅ || 互助✅')
+      }else if(Number(summer_movement_ShHelpFlag) === 2){
+        console.log('您设置了 【百元守卫战SH】✅ || 互助❌')
+      }else if(Number(summer_movement_ShHelpFlag) === 0){
+        console.log('您设置了 【百元守卫战SH】❌ || 互助❌')
+      }else{
+        console.log('原 summer_movement_ShHelpFlag 变量不兼容请修改 0不开启也不助力 1开启并助力 2开启但不助力')
+      }
+
       console.log('\n\n该脚本启用了[正道的光]模式\n执行 做任务、做店铺任务、助力 会有几率不执行\n本脚本不让任务一次全部做完\n您可以多跑几次\n北京时间18时后是正常模式\n\n🐸\n')
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -76,11 +87,6 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
     }
   }
   // 助力
-  let res = [];
-  if (ShHelpAuthorFlag) {
-    $.innerShInviteList = getRandomArrayElements([...$.innerShInviteList, ...res], [...$.innerShInviteList, ...res].length);
-    $.ShInviteList.push(...$.innerShInviteList);
-  }
   for (let i = 0; i < cookiesArr.length; i++) {
     $.cookie = cookiesArr[i];
     $.canHelp = true;
@@ -90,20 +96,6 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
     }
     // $.secretp = $.secretpInfo[$.UserName];
     $.index = i + 1;
-    if (new Date().getUTCHours() + 8 >= 9) {
-      if(`${ShHelpFlag}` === "true"){
-        if ($.ShInviteList && $.ShInviteList.length) console.log(`\n******开始内部京东账号【百元守卫站SH】助力*********\n`);
-        for (let i = 0; i < $.ShInviteList.length && $.canHelp; i++) {
-          if(aabbiill()) {
-            console.log(`${$.UserName} 去助力SH码 ${$.ShInviteList[i]}`);
-            $.inviteId = $.ShInviteList[i];
-            await takePostRequest('shHelp');
-            await $.wait(1000);
-          }
-        }
-      }
-      $.canHelp = true;
-    }
     if ($.inviteList && $.inviteList.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList.length && $.canHelp; j++) {
       $.oneInviteInfo = $.inviteList[j];
@@ -216,7 +208,7 @@ async function movement() {
             let sendInfo = encodeURIComponent(`{"dataSource":"newshortAward","method":"getTaskAward","reqParams":"{\\"taskToken\\":\\"${$.callbackInfo.data.result.taskToken}\\"}","sdkVersion":"1.0.0","clientLanguage":"zh"}`)
             await callbackResult(sendInfo)
           } else if ($.oneTask.taskType === 5 || $.oneTask.taskType === 3 || $.oneTask.taskType === 26) {
-            await $.wait(getRndInteger(7000, 1500));
+            await $.wait(getRndInteger(700, 1500));
             console.log(`任务完成`);
           } else if ($.oneTask.taskType === 21) {
             let data = $.callbackInfo
@@ -272,6 +264,33 @@ async function movement() {
         }
       }
     }
+    
+    //==================================微信任务========================================================================
+    $.wxTaskList = [];
+    if(!$.hotFlag) await takePostRequest('wxTaskDetail');
+    for (let i = 0; i < $.wxTaskList.length; i++) {
+      $.oneTask = $.wxTaskList[i];
+      if($.oneTask.taskType === 2 || $.oneTask.status !== 1){continue;} //不做加购
+      $.activityInfoList = $.oneTask.shoppingActivityVos || $.oneTask.brandMemberVos || $.oneTask.followShopVo || $.oneTask.browseShopVo;
+      for (let j = 0; j < $.activityInfoList.length; j++) {
+        $.oneActivityInfo = $.activityInfoList[j];
+        if ($.oneActivityInfo.status !== 1 || !$.oneActivityInfo.taskToken) {
+          continue;
+        }
+        $.callbackInfo = {};
+        console.log(`做任务：${$.oneActivityInfo.title || $.oneActivityInfo.taskName || $.oneActivityInfo.shopName};等待完成`);
+        await takePostRequest('olympicgames_doTaskDetail');
+        if ($.callbackInfo.code === 0 && $.callbackInfo.data && $.callbackInfo.data.result && $.callbackInfo.data.result.taskToken) {
+          await $.wait(getRndInteger(7000, 8000));
+          let sendInfo = encodeURIComponent(`{"dataSource":"newshortAward","method":"getTaskAward","reqParams":"{\\"taskToken\\":\\"${$.callbackInfo.data.result.taskToken}\\"}","sdkVersion":"1.0.0","clientLanguage":"zh"}`)
+          await callbackResult(sendInfo)
+        } else  {
+          await $.wait(getRndInteger(1000, 2000));
+          console.log(`任务完成`);
+        }
+      }
+    }
+
     // 店铺
     console.log(`\n去做店铺任务\n`);
     $.shopInfoList = [];
@@ -333,20 +352,9 @@ async function movement() {
       if(taskbool) await $.wait(3000);
     }
 
-    $.Shend = false
-    await $.wait(1000);
-    console.log('\n百元守卫站')
-    await takePostRequest('olypicgames_guradHome');
-    await $.wait(1000);
-    if($.Shend){
-      await takePostRequest('olympicgames_receiveCash');
-      await $.wait(1000);
-    }
-
   } catch (e) {
     $.logErr(e)
   }
-
 }
 
 async function takePostRequest(type) {
@@ -421,6 +429,10 @@ async function takePostRequest(type) {
     case 'olympicgames_boxShopLottery':
       body = `functionId=olympicgames_boxShopLottery&body={"shopSign":${$.shopSign}}&client=wh5&clientVersion=1.0.0&appid=${$.appid}`;
       myRequest = await getPostRequest(`olympicgames_boxShopLottery`,body);
+      break;
+    case 'wxTaskDetail':
+      body = `functionId=olympicgames_getTaskDetail&body={"taskId":"","appSign":"2"}&client=wh5&clientVersion=1.0.0&loginWQBiz=businesst1&appid=${$.appid}`;
+      myRequest = await getPostRequest(`olympicgames_getTaskDetail`,body);
       break;
     default:
       console.log(`错误${type}`);
@@ -526,7 +538,17 @@ async function dealReturn(type, res) {
       }
       break;
     case 'olympicgames_doTaskDetail':
-      $.callbackInfo = data;
+      if (data.data && data.data.bizCode === 0) {
+        if (data.data.result && data.data.result.taskToken) {
+          $.callbackInfo = data;
+        }else if(data.data.result && data.data.result.successToast){
+          console.log(data.data.result.successToast);
+        }
+      } else if (data.data && data.data.bizMsg) {
+        console.log(data.data.bizMsg);
+      } else {
+        console.log(res);
+      }
       break;
     case 'olympicgames_getFeedDetail':
       if (data.code === 0) {
@@ -635,6 +657,11 @@ async function dealReturn(type, res) {
         console.log(res);
       }
       break
+    case 'wxTaskDetail':
+      if (data.code === 0) {
+        $.wxTaskList = data.data.result && data.data.result.taskVos || [];
+      }
+      break;
     default:
       console.log(`未判断的异常${type}`);
   }
@@ -776,7 +803,7 @@ function joinjoinjoinhui(url,Referer) {
 // 正道的光
 function aabbiill(){
   let ccdd = 0
-  if(new Date().getUTCHours() + 8 >= 18){
+  if(new Date().getUTCHours() + 8 >= 18 && new Date().getUTCHours() + 8 < 24){
     ccdd = 1
   }else{
     ccdd = getRndInteger(0,3)
