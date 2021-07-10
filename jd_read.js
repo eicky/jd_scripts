@@ -1,6 +1,6 @@
 /*
 10s阅读
-立即参与 -> http://h5.janzho7.cn/j/h?upuid=137424&ch=gzh&type=1
+微信立即参与 -> http://h5.janzho7.cn/j/h?upuid=137424&ch=gzh&type=1
 备用链接 -> http://h5.cw28ciea.cn/j/h?upuid=137424&ch=gzh&type=1
 每小时有0.3 一天5轮 一天1.5
 进不去关注10秒读书极速版公众号用官方链接
