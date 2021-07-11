@@ -4,7 +4,7 @@
 备注：高速并发请求，专治偷助力。在kois环境变量中填入需要助力的pt_pin，有多个请用@符号连接
 cron 0 0 * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_angryKoi.js
 */
-const $ = Env("锦鲤红包")
+const $ = new Env("锦鲤红包")
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`
 var kois = process.env.kois ?? ""
