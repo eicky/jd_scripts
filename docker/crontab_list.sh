@@ -104,6 +104,7 @@
 18 2,4 * * * node /scripts/jd_haier.js >> /scripts/logs/jd_haier.log 2>&1
 28 1,3 * * * node /scripts/jd_wxFans.js >> /scripts/logs/jd_wxFans.log 2>&1
 0 0 * * * node /scripts/jd_angryKoi.js >> /scripts/logs/jd_angryKoi.log 2>&1
+5 * * * * node /scripts/jx_cfd.js >> /scripts/logs/jx_cfd.log 2>&1
 32 8-23/4 * * * node /scripts/jd_summer_movement_help.js >> /scripts/logs/jd_summer_movement_help.log 2>&1
 5 0 * * * python3 /jd/scripts/jd_qjd.py >> /jd/log/jd_qjd.log 2>&1\
 1 6,7 * * * python3 /jd/scripts/jd_zqfl.py >> /jd/log/jd_zqfl.log 2>&1
