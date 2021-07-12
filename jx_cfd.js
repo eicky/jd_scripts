@@ -6,7 +6,6 @@
  * 领奖、任务
  cron 5 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jx_cfd.js
  */
-const $ = new Env('财富岛');
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
