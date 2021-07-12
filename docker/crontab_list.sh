@@ -88,12 +88,6 @@
 20 */4 * * * node /scripts/jd_jddj_plantBeans.js >> /scripts/logs/jd_jddj_plantBeans.log 2>&1
 0 0,9,21 * * * node /scripts/jd_europeancup.js >> /scripts/logs/jd_europeancup.log 2>&1
 46 0,1 * * * node /scripts/jd_lsj.js >> /scripts/logs/jd_lsj.log 2>&1
-0 14 * * * node /scripts/jd_zooCaptain01.js >> /scripts/logs/jd_zooCaptain01.log 2>&1
-13 14 * * * node /scripts/jd_cfd_lottery.js >> /scripts/logs/jd_cfd_lottery.log 2>&1
-0 12 * * * node /scripts/jd_sendbean.js >> /scripts/logs/jd_sendbean.log 2>&1
-10 12 * * * node /scripts/jd_sendbean1.js >> /scripts/logs/jd_sendbean1.log 2>&1
-20 12 * * * node /scripts/jd_sendbean2.js >> /scripts/logs/jd_sendbean2.log 2>&1
-30 12 * * * node /scripts/jd_sendbean3.js >> /scripts/logs/jd_sendbean3.log 2>&1
 13 3 * * * node /scripts/jd_drawEntrance.js >> /scripts/logs/jd_drawEntrance.log 2>&1
 13 0 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 13 * * * * node /scripts/jd_joypark.js >> /scripts/logs/jd_joypark.log 2>&1
