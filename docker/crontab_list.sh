@@ -87,7 +87,6 @@
 5-40/5 * * * * node /scripts/jd_jddj_getPoints.js >> /scripts/logs/jd_jddj_getPoints.log 2>&1
 20 */4 * * * node /scripts/jd_jddj_plantBeans.js >> /scripts/logs/jd_jddj_plantBeans.log 2>&1
 0 0,9,21 * * * node /scripts/jd_europeancup.js >> /scripts/logs/jd_europeancup.log 2>&1
-0 0 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 46 0,1 * * * node /scripts/jd_lsj.js >> /scripts/logs/jd_lsj.log 2>&1
 0 14 * * * node /scripts/jd_zooCaptain01.js >> /scripts/logs/jd_zooCaptain01.log 2>&1
 13 14 * * * node /scripts/jd_cfd_lottery.js >> /scripts/logs/jd_cfd_lottery.log 2>&1
@@ -103,7 +102,6 @@
 8 4,6 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
 25 0,6-23/3 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
 18 2,4 * * * node /scripts/jd_haier.js >> /scripts/logs/jd_haier.log 2>&1
-0 0 * * * node /scripts/jd_cfdtx1.js >> /scripts/logs/jd_cfdtx1.log 2>&1
 28 1,3 * * * node /scripts/jd_wxFans.js >> /scripts/logs/jd_wxFans.log 2>&1
 0 0 * * * node /scripts/jd_angryKoi.js >> /scripts/logs/jd_angryKoi.log 2>&1
 32 8-23/4 * * * node /scripts/jd_summer_movement_help.js >> /scripts/logs/jd_summer_movement_help.log 2>&1
