@@ -77,13 +77,13 @@ const UA = $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT :
   }
   // 助力
   let res = [], res2 = [];
-  $.innerShInviteList = await getAuthorShareCode('https://raw.githubusercontent.com/yuannian1112/updateTeam/master/shareCodes/summer_movement_one.json');
-  res2 = await getAuthorShareCode('https://raw.githubusercontent.com/yuannian1112/updateTeam/master/shareCodes/summer_movement.json');
+  $.innerShInviteList = await getAuthorShareCode('https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/summer_movement_one.json');
+  res2 = await getAuthorShareCode('https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/summer_movement.json');
   if(!$.innerShInviteList[0]){
-    $.innerShInviteList = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/updateTeam/master/shareCodes/summer_movement.json');
+    $.innerShInviteList = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/summer_movement.json');
   }
   if(!res2[0]){
-    res2 = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/updateTeam/master/shareCodes/summer_movement.json');
+    res2 = await getAuthorShareCode('https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/summer_movement.json');
   }
   $.ShInviteLists = []
   $.ShInviteLists = []
