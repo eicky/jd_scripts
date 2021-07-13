@@ -1,7 +1,7 @@
 /*
   https://st.jingxi.com/fortune_island/index2.html
 
-  18 0-23/2 * * * https://raw.githubusercontent.com/smiek2221/scripts/master/gua_wealth_island.js 财富大陆
+ cron 35 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cfd.js
 
 */
 
