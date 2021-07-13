@@ -7,7 +7,7 @@
 ============Quantumultx===============
 [task_local]
 #京喜财富岛热气球挂机
-10 1,12 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd_loop.js, tag=京喜财富岛热气球挂机, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
+cron 10 1,12 * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd_loop.js, tag=京喜财富岛热气球挂机, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
 ================Loon==============
 [Script]
 cron "10 1,12 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd_loop.js,tag=京喜财富岛热气球挂机
