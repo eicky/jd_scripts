@@ -1,5 +1,6 @@
 /*
-京喜财富岛cron 5 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cfd.js
+京喜财富岛
+cron 5 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cfd.js
 更新时间：2021-7-13
 活动入口：京喜APP-我的-京喜财富岛
 
