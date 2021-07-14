@@ -1,19 +1,22 @@
 /*
-京喜财富岛
-cron 5 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cfd.js
+京喜财富岛cron 5 * * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cfd.js
 更新时间：2021-7-13
 活动入口：京喜APP-我的-京喜财富岛
+
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 ============Quantumultx===============
 [task_local]
 #京喜财富岛
 5 * * * * https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js, tag=京喜财富岛, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jxcfd.png, enabled=true
+
 ================Loon==============
 [Script]
 cron "5 * * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js,tag=京喜财富岛
+
 ===============Surge=================
 京喜财富岛 = type=cron,cronexp="5 * * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js
+
 ============小火箭=========
 京喜财富岛 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_cfd.js, cronexpr="5 * * * *", timeout=3600, enable=true
  */
@@ -160,6 +163,26 @@ async function cfd() {
       await $.wait(1000)
     }
 
+    //接待贵宾
+    console.log(`接待贵宾`)
+    if ($.info.StoryInfo.StoryList) {
+      await $.wait(2000)
+      for (let key of Object.keys($.info.StoryInfo.StoryList)) {
+        let vo = $.info.StoryInfo.StoryList[key]
+        if (vo.Special) {
+          console.log(`请贵宾下船，需等待${vo.Special.dwWaitTime}秒`)
+          await specialUserOper(vo.strStoryId, '2', vo.ddwTriggerDay, vo)
+          await $.wait(vo.Special.dwWaitTime * 1000)
+          await specialUserOper(vo.strStoryId, '3', vo.ddwTriggerDay, vo)
+          await $.wait(2000)
+        } else {
+          console.log(`当前暂无贵宾\n`)
+        }
+      }
+    } else {
+      console.log(`当前暂无贵宾\n`)
+    }
+
     //倒垃圾
     await $.wait(2000)
     await queryRubbishInfo()
@@ -197,6 +220,39 @@ async function cfd() {
   } catch (e) {
     $.logErr(e)
   }
+}
+
+// 接待贵宾
+function specialUserOper(strStoryId, dwType, ddwTriggerDay, StoryList) {
+  return new Promise((resolve) => {
+    $.get(taskUrl(`story/SpecialUserOper`, `strStoryId=${strStoryId}&dwType=${dwType}&triggerType=0&ddwTriggerDay=${ddwTriggerDay}`), (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} SpecialUserOper API请求失败，请检查网路重试`)
+        } else {
+          data = JSON.parse(data);
+          if (dwType === '2') {
+            if (data.iRet === 0 || data.sErrMsg === "success") {
+              console.log(`贵宾'${StoryList.Special.strName}'下船成功`)
+            } else {
+              console.log(`贵宾'${StoryList.Special.strName}'下船失败 ${data.sErrMsg}\n`)
+            }
+          } else if (dwType === '3') {
+            if (data.iRet === 0 || data.sErrMsg === "success") {
+              console.log(`贵宾'${StoryList.Special.strName}'用餐成功：获得${StoryList.Special.ddwCoin}金币\n`)
+            } else {
+              console.log(`贵宾'${StoryList.Special.strName}'用餐失败：${data.sErrMsg}\n`)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp);
+      } finally {
+        resolve();
+      }
+    })
+  })
 }
 
 // 卖贝壳
@@ -404,23 +460,30 @@ async function queryRubbishInfo() {
         } else {
           data = JSON.parse(data);
           console.log(`倒垃圾`)
-          if (data.Data.StoryInfo.StoryList.length === 0) {
-            console.log(`暂时没有垃圾\n`)
+          if (data.Data.StoryInfo.StoryList.length !== 0) {
+            for (let key of Object.keys(data.Data.StoryInfo.StoryList)) {
+              let vo = data.Data.StoryInfo.StoryList[key]
+              if (vo.Rubbish && vo.Rubbish.dwIsFirstGame === 1) {
+                console.log(`获取到垃圾信息：次数 1/2`)
+                await $.wait(2000)
+                let rubbishOperRes = await rubbishOper('1')
+                for (let key of Object.keys(rubbishOperRes.Data.ThrowRubbish.Game.RubbishList)) {
+                  let vo = rubbishOperRes.Data.ThrowRubbish.Game.RubbishList[key]
+                  await $.wait(2000)
+                  var rubbishOperTwoRes = await rubbishOper('2', `dwRubbishId=${vo.dwId}`)
+                }
+                if (rubbishOperTwoRes.iRet === 0) {
+                  let AllRubbish = rubbishOperTwoRes.Data.RubbishGame.AllRubbish
+                  console.log(`倒垃圾成功：获得${AllRubbish.ddwCoin}金币 ${AllRubbish.ddwMoney}财富\n`)
+                } else {
+                  console.log(`倒垃圾失败：${rubbishOperTwoRes.sErrMsg}\n`)
+                }
+              } else {
+                console.log(`当前暂无垃圾：完成次数 1/2\n`)
+              }
+            }
           } else {
-            console.log(`获取到垃圾信息，开始倒垃圾`)
-            await $.wait(2000)
-            let rubbishOperRes = await rubbishOper('1')
-            for(let key of Object.keys(rubbishOperRes.Data.ThrowRubbish.Game.RubbishList)) {
-              let vo = rubbishOperRes.Data.ThrowRubbish.Game.RubbishList[key]
-              await $.wait(2000)
-              var rubbishOperTwoRes = await rubbishOper('2', `dwRubbishId=${vo.dwId}`)
-            }
-            if (rubbishOperTwoRes.iRet === 0) {
-              let AllRubbish = rubbishOperTwoRes.Data.RubbishGame.AllRubbish
-              console.log(`倒垃圾成功：获得${AllRubbish.ddwCoin}金币 ${AllRubbish.ddwMoney}财富\n`)
-            } else {
-              console.log(`倒垃圾失败：${rubbishOperTwoRes.sErrMsg}\n`)
-            }
+            console.log(`当前暂无垃圾\n`)
           }
         }
       } catch (e) {
@@ -804,18 +867,15 @@ function getUserInfo(showInvite = true) {
         } else {
           data = JSON.parse(data);
           const {
-            iret,
             buildInfo = {},
             ddwRichBalance,
             ddwCoinBalance,
-            JxUserWelfare,
             sErrMsg,
             strMyShareId,
-            strNickName,
             dwLandLvl,
-            Fund = {}
+            Fund = {},
+            StoryInfo = {}
           } = data;
-          const dwIsJxNewUser = JxUserWelfare["dwIsJxNewUser"]
           if (showInvite) {
             console.log(`\n获取用户信息：${sErrMsg}\n${$.showLog ? data : ""}`);
             console.log(`\n当前等级:${dwLandLvl},金币:${ddwCoinBalance},财富值:${ddwRichBalance}\n`)
@@ -830,20 +890,18 @@ function getUserInfo(showInvite = true) {
             buildInfo,
             ddwRichBalance,
             ddwCoinBalance,
-            dwIsJxNewUser,
             strMyShareId,
-            strNickName,
             dwLandLvl,
-            Fund
+            Fund,
+            StoryInfo
           };
           resolve({
             buildInfo,
             ddwRichBalance,
             ddwCoinBalance,
-            dwIsJxNewUser,
             strMyShareId,
-            strNickName,
-            Fund
+            Fund,
+            StoryInfo
           });
         }
       } catch (e) {
@@ -1169,8 +1227,8 @@ function readShareCode() {
     }, (err, resp, data) => {
       try {
         if (err) {
-          //console.log(`${JSON.stringify(err)}`)
-          //console.log(`${$.name} API请求失败，请检查网路重试`)
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
