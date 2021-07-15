@@ -14,7 +14,7 @@ ENV DEFAULT_LIST_FILE=crontab_list.sh \
 RUN set -ex \
     && apk update \
     && apk upgrade \
-    && apk add --no-cache bash tzdata git moreutils curl jq openssh-client python3 \
+    && apk add --no-cache bash tzdata git moreutils curl jq openssh-client python3 py3-pip \
     && rm -rf /var/cache/apk/* \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
