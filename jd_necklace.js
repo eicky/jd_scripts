@@ -9,7 +9,7 @@ Last Modified time: 2021-05-28 17:27:14
 20 0,20 * * * jd_necklace.js, tag=点点券, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
  */
 const $ = new Env('点点券');
-const ZooFaker=require('./ZooFaker_Necklace.js') 
+const ZooFaker=require('./utils/ZooFaker_Necklace.js') 
 let allMessage = ``;
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
