@@ -14,7 +14,7 @@ ENV DEFAULT_LIST_FILE=crontab_list.sh \
 RUN set -ex \
     && apk update \
     && apk upgrade \
-    && apk add --no-cache bash tzdata git moreutils curl jq openssh-client \
+    && apk add --no-cache bash tzdata git moreutils curl jq openssh-client python3 \
     && rm -rf /var/cache/apk/* \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
@@ -25,6 +25,7 @@ RUN set -ex \
     && git clone -b $REPO_BRANCH $REPO_URL /scripts \
     && cd /scripts \
     && mkdir logs \
+    && python3 -m pip install requests \
     && npm config set registry https://registry.npm.taobao.org \
     && npm install \
     && cp /scripts/docker/docker_entrypoint.sh /usr/local/bin \
