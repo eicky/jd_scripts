@@ -39,6 +39,7 @@ jobs:
           from_branch: main
           target_branch: master
           github_token: ${{ secrets.PAT }}
+          sync_tags: true
 
       # 我自己同步到gitee使用，其他人可忽略
       - name: sync github -> gitee
