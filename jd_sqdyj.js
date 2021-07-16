@@ -244,7 +244,7 @@ function open() {
 function getauthorid() {
     return new Promise(async (resolve) => {
         let options = {
-            url: "https://ghproxy.com/https://raw.githubusercontent.com/yuannian1112/code/main/dyj.json",
+            url: "https://raw.githubusercontent.com/yuannian1112/code/main/dyj.json",
             headers: {}
         }
         $.get(options, async (err, resp, data) => {
