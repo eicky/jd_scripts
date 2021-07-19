@@ -1,5 +1,6 @@
 
 /*
+cron 33 1,8,12,19 * * * https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js
 v1.4
 快手果园任务脚本,支持qx,loon,shadowrocket,surge,nodejs
 手机设备在boxjs里填写cookie
@@ -7,10 +8,10 @@ v1.4
 boxjs订阅地址:https://gitee.com/passerby-b/javascript/raw/master/JD/passerby-b.boxjs.json
 
 [task_local]
-cron 33 1,8,12,17 * * * https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js
+33 1,8,12,19 * * * https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js
 
 [Script]
-cron "33 1,8,12,17 * * *" script-path=https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js,tag=快手果园 
+cron "33 1,8,12,19 * * *" script-path=https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js,tag=快手果园 
 
 */
 
