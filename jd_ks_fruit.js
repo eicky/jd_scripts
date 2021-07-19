@@ -8,10 +8,10 @@ v1.4
 boxjs订阅地址:https://gitee.com/passerby-b/javascript/raw/master/JD/passerby-b.boxjs.json
 
 [task_local]
-33 1,8,12,19 * * * https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js
+cron 33 1,8,12,19 * * * https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js
 
 [Script]
-cron "33 1,8,12,19 * * *" script-path=https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js,tag=快手果园 
+cron 33 1,8,12,19 * * * script-path=https://raw.githubusercontent.com/passerby-b/ks_fruit/main/ks_fruit.js,tag=快手果园 
 
 */
 
