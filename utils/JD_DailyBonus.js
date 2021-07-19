@@ -1,4 +1,4 @@
-/*************************
+/*
 
 京东多合一签到脚本
 
@@ -9,11 +9,7 @@
 问题反馈: @NobyDa_bot 
 如果转载: 请注明出处
 
-*************************
-【 JSbox, Node.js 说明 】 :
-*************************
-
-开启抓包app后, Safari浏览器登录 https://bean.m.jd.com/bean/signIndex.action 点击签到并且出现签到日历后, 返回抓包app搜索关键字 functionId=signBean 复制请求头Cookie填入以下Key处的单引号内即可 */
+*/
 
 var Key = ''; //单引号内自行填写您抓取的Cookie
 
@@ -21,73 +17,6 @@ var DualKey = ''; //如需双账号签到,此处单引号内填写抓取的"账�
 
 var OtherKey = ''; //第三账号或以上的Cookie json串数据, 以下样例为第三第四账号：var OtherKey = '[{"cookie":"pt_key=xxxxxx;pt_pin=yyyyyy"},{"cookie":"pt_key=xxxxxx;pt_pin=yyyyyy"}]'
 
-/* 注1: 以上选项仅针对于JsBox或Node.js, 如果使用QX,Surge,Loon, 请使用脚本获取Cookie.
-   注2: 双账号用户抓取"账号1"Cookie后, 请勿点击退出账号(可能会导致Cookie失效), 需清除浏览器资料或更换浏览器登录"账号2"抓取.
-   注3: 如果复制的Cookie开头为"Cookie: "请把它删除后填入.
-   注4: 如果使用QX,Surge,Loon并获取Cookie后, 再重复填写以上选项, 则签到优先读取以上Cookie.
-   注5: 如果使用Node.js, 需自行安装'request'模块. 例: npm install request -g
-   注6: Node.js或JSbox环境下已配置数据持久化, 填写Cookie运行一次后, 后续更新脚本无需再次填写, 待Cookie失效后重新抓取填写即可.
-
-*************************
-【 QX, Surge, Loon 说明 】 :
-*************************
-
-初次使用时, app配置文件添加脚本配置,并启用Mitm后, Safari浏览器打开登录 https://bean.m.jd.com/bean/signIndex.action ,点击签到并且出现签到日历后, 如果通知获得cookie成功, 则可以使用此签到脚本。 注: 请勿在京东APP内获取!!!
-
-由于cookie的有效性(经测试网页Cookie有效周期最长31天)，如果脚本后续弹出cookie无效的通知，则需要重复上述步骤。 
-签到脚本将在每天的凌晨0:05执行, 您可以修改执行时间。 因部分接口京豆限量领取, 建议调整为凌晨签到。
-
-BoxJs或QX Gallery订阅地址: https://raw.githubusercontent.com/NobyDa/Script/master/NobyDa_BoxJs.json
-
-*************************
-【 配置多京东账号签到说明 】 : 
-*************************
-
-正确配置QX、Surge、Loon后, 并使用此脚本获取"账号1"Cookie成功后, 请勿点击退出账号(可能会导致Cookie失效), 需清除浏览器资料或更换浏览器登录"账号2"获取即可; 账号3或以上同理.
-注: 如需清除所有Cookie, 您可开启脚本内"DeleteCookie"选项 (第96行)
-
-*************************
-【Surge 4.2+ 脚本配置】:
-*************************
-
-[Script]
-京东多合一签到 = type=cron,cronexp=5 0 * * *,wake-system=1,timeout=60,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-
-获取京东Cookie = type=http-request,pattern=https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean,script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-
-[MITM]
-hostname = api.m.jd.com
-
-*************************
-【Loon 2.1+ 脚本配置】:
-*************************
-
-[Script]
-cron "5 0 * * *" tag=京东多合一签到, script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-
-http-request https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean tag=获取京东Cookie, script-path=https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-
-[MITM]
-hostname = api.m.jd.com
-
-*************************
-【 QX 1.0.10+ 脚本配置 】 :
-*************************
-
-[task_local]
-# 京东多合一签到
-# 注意此为远程路径, 低版本用户请自行调整为本地路径.
-5 0 * * * https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js, tag=京东多合一签到, img-url=https://raw.githubusercontent.com/NobyDa/mini/master/Color/jd.png,enabled=true
-
-[rewrite_local]
-# 获取京东Cookie. 
-# 注意此为远程路径, 低版本用户请自行调整为本地路径.
-https:\/\/api\.m\.jd\.com\/client\.action.*functionId=signBean url script-request-header https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js
-
-[mitm]
-hostname = api.m.jd.com
-
-*************************/
 
 var LogDetails = false; //是否开启响应日志, true则开启
 
@@ -102,6 +31,13 @@ var ReDis = false; //是否移除所有禁用列表, true则开启. 适用于触
 var out = 0; //接口超时退出, 用于可能发生的网络不稳定, 0则关闭. 如QX日志出现大量"JS Context timeout"后脚本中断时, 建议填写6000
 
 var $nobyda = nobyda();
+
+const Faker = require('./jd_sign_validate')
+const zooFaker = require('./JDJRValidator_Pure')
+let fp = '', eid = ''
+
+$nobyda.get = zooFaker.injectToRequest2($nobyda.get.bind($nobyda), 'channelSign')
+$nobyda.post = zooFaker.injectToRequest2($nobyda.post.bind($nobyda), 'channelSign')
 
 async function all() {
   merge = {};
@@ -832,8 +768,24 @@ async function JDUserSign2(s, key, title, tid) {
       headers: {
         Cookie: KEY
       }
-    }, function(error, response, data) {
-      resolve()
+    }, async function(error, response, data) {
+      try {
+        if(data) {
+          data = JSON.parse(data);
+          if (data.success && data.data) {
+            data = data.data
+            if (!data.hasSign) {
+              let ss = await Faker.getBody(`https://prodev.m.jd.com/mall/active/${tid}/index.html`)
+              fp = ss.fp
+              await getEid(ss, title)
+            }
+          }
+        }
+      } catch(eor) {
+        $nobyda.AnError(title, key, eor, response, data)
+      } finally {
+        resolve()
+      }
     })
     if (out) setTimeout(resolve, out + s)
   });
@@ -844,7 +796,7 @@ async function JDUserSign2(s, key, title, tid) {
         headers: {
           Cookie: KEY
         },
-        body: `turnTableId=${tid}`
+        body: `turnTableId=${tid}&fp=${fp}&eid=${eid}`
       };
       $nobyda.post(JDUrl, function(error, response, data) {
         try {
@@ -1512,12 +1464,44 @@ function TotalSteel() {
   });
 }
 
+function getEid(ss, title) {
+  return new Promise(resolve => {
+    const options = {
+      url: `https://gia.jd.com/fcf.html?a=${ss.a}`,
+      body: `d=${ss.d}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      }
+    }
+    $nobyda.post(options, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`\n${title} 登录: API查询请求失败 ‼️‼️`)
+          throw new Error(err);
+        } else {
+          if (data.indexOf("*_*") > 0) {
+            data = data.split("*_*", 2);
+            data = JSON.parse(data[1]);
+            eid = data.eid
+          } else {
+            console.log(`京豆api返回数据为空，请检查自身原因`)
+          }
+        }
+      } catch (eor) {
+        $nobyda.AnError(eor, resp);
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
 function TotalBean() {
   merge.TotalBean = {};
   return new Promise(resolve => {
     if (disable("Qbear")) return resolve()
     $nobyda.get({
-      url: 'https://me-api.jd.com/user_new/info/GetJDUserInfoUnion',
+      url: 'https://me-api.jd.com/user_new/info/GetJDUserInfoUnion?sceneval=2',
       headers: {
         Cookie: KEY
       }
