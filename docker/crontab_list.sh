@@ -90,7 +90,6 @@
 13 3 * * * node /scripts/jd_drawEntrance.js >> /scripts/logs/jd_drawEntrance.log 2>&1
 13 0 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 13 * * * * node /scripts/jd_joypark.js >> /scripts/logs/jd_joypark.log 2>&1
-28 */6 * * * node /scripts/jd_sign.js >> /scripts/logs/jd_sign.log 2>&1
 8 0 * * * node /scripts/jd_SendBean.js >> /scripts/logs/jd_SendBean.log 2>&1
 8 4,6 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
 25 0,6-23/3 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
