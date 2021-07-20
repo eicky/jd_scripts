@@ -1,5 +1,5 @@
 /*
-赚30元
+天降红包
 更新时间：2021-7-19
 入口：我的-赚30
 备注：赚30元每日签到红包、天降红包助力，在earn30Pins环境变量中填入需要签到和接受助力的账号。
@@ -7,7 +7,7 @@
 TG学习交流群：https://t.me/cdles
 3 1,6 * * * https://raw.githubusercontent.com/cdle/jd_study/main/jd_earn30.js
 */
-const $ = new Env("赚30元")
+const $ = new Env("天降红包")
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`
 var pins = process.env.earn30Pins ? process.env.earn30Pins : '';
