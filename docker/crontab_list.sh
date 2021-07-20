@@ -50,7 +50,6 @@
 #10 7 * * * node /scripts/jd_crazy_joy.js >> /scripts/logs/jd_crazy_joy.log 2>&1
 1 1,2 * * * node /scripts/jd_ppdz.js >> /scripts/logs/jd_ppdz.log 2>&1
 20 0,1 * * * node /scripts/jd_SplitRedPacket.js >> /scripts/logs/jd_SplitRedPacket.log 2>&1
-30 0,1 * * * node /scripts/jd_SplitRedPacket1.js >> /scripts/logs/jd_SplitRedPacket1.log 2>&1
 10 2 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 1 2,15,19 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
 9 0-23/3 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
