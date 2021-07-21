@@ -126,7 +126,6 @@
 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
 #京喜财富岛
 5 7,12,18 * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
-35 * * * * node /scripts/jd_cfd1.js >> /scripts/logs/jd_cfd1.log 2>&1
 5 0 * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
 # 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
 #20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
@@ -173,7 +172,6 @@
 1 1,2 * * * node /scripts/jd_ppdz.js >> /scripts/logs/jd_ppdz.log 2>&1
 # 天降红包
 20 0,1 * * * node /scripts/jd_SplitRedPacket.js >> /scripts/logs/jd_SplitRedPacket.log 2>&1
-30 0,1 * * * node /scripts/jd_SplitRedPacket1.js >> /scripts/logs/jd_SplitRedPacket1.log 2>&1
 # 东东乐园
 9 0-23/3 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
 # 京东月资产变动通知
