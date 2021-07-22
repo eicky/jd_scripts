@@ -199,7 +199,8 @@ function getGoodListByCond(cids, page, pageSize, type, state) {
 					}
 				}
 			} catch (e) {
-				reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				// reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				console.log(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n`)
 			} finally {
 				resolve()
 			}
@@ -329,7 +330,8 @@ function isFollowed(good) {
 					resolve(data.success && data.data)
 				}
 			} catch (e) {
-				reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				// reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				console.log(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n`)
 			} finally {
 				resolve(false)
 			}
@@ -352,7 +354,8 @@ function followShop(good) {
 					resolve(data.success && data.data)
 				}
 			} catch (e) {
-				reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				// reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				console.log(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n`)
 			} finally {
 				resolve(false)
 			}
@@ -437,7 +440,8 @@ async function getSuccessList() {
 					}
 				}
 			} catch (e) {
-				reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				// reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				console.log(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n`)
 			} finally {
 				resolve()
 			}
