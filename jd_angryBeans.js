@@ -96,7 +96,7 @@ function open(help) {
                     tool.times = maxTimes
                }
           }
-          if(tool < maxTimes){
+          if(tool.times < maxTimes){
                if(Array.from(new Set(tool.helps)).length != helps.length){
                     tools.unshift(tool)
                }
