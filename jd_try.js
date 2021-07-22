@@ -395,9 +395,13 @@ async function doTry(good) {
 					}
 				}
 			} catch (e) {
-				reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				//reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
+				console.log(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n`)
 			} finally {
-				resolve()
+				//去掉，跳不出去了
+				// resolve()
+				$.totalTry += 1
+				console.log(`🥳 ${good.id} 🛒${good.trialName.substr(0, 15)}🛒 试用API出错,申请下一个`)
 			}
 		})
 	})
