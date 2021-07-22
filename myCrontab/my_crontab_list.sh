@@ -177,7 +177,7 @@
 # 京东月资产变动通知
 0 0 * * * node /scripts/jd_bean_change1.js >> /scripts/logs/jd_bean_change1.log 2>&1
 # 京东试用
-30 16 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+10 10,16 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 柠檬赚金币
 0 8 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # crazyJoy挂机
@@ -233,4 +233,6 @@
 # 发财大赢家
 10 1,5 * * * node /scripts/jd_sqdyj.js >> /scripts/logs/jd_sqdyj.log 2>&1
 # 财富岛提现
-59 23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
+59 11,12,23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
+# 全民摸冰
+19 9,12 * * * node /scripts/jd_mb.js >> /scripts/logs/jd_mb.log 2>&1
