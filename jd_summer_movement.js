@@ -119,14 +119,29 @@ getUA()
   }
   // 助力
   for (let i = 0; i < cookiesArr.length; i++) {
-    $.cookie = cookiesArr[i];
-    $.canHelp = true;
-    $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
     if (!$.secretpInfo[$.UserName]) {
       continue;
     }
     // $.secretp = $.secretpInfo[$.UserName];
     $.index = i + 1;
+    let out = false
+     for(let c of outuserIdArr){
+         if(c == $.index) {
+             out = true
+             break
+         }
+     }
+     if(out) continue
+     $.canHelp = true;
+     $.hotFlag = false;
+     $.index = i + 1;
+     $.cookie = cookiesArr[i] + "pwdt_id:" + encodeURIComponent($.UserName) + ";";
+     $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+     $.cookie = $.cookie + "pwdt_id:" + encodeURIComponent($.UserName) + ";";
+     $.nickName = $.UserName;
+     $.joyytoken = ''
+     joyytoken_count = 1
+     getUA()
     if ($.inviteList && $.inviteList.length) console.log(`\n******开始内部京东账号【邀请好友助力】*********\n`);
     for (let j = 0; j < $.inviteList.length && $.canHelp && !$.hotFlag; j++) {
       $.oneInviteInfo = $.inviteList[j];
