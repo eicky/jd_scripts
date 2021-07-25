@@ -986,7 +986,7 @@ async function getBuildInfo(body, buildList, type = true) {
             console.log(`升级建筑`)
             console.log(`【${buildNmae}】当前等级：${buildList.dwLvl} 升级获得财富：${data.ddwLvlRich}`)
             console.log(`【${buildNmae}】升级需要${data.ddwNextLvlCostCoin}金币，当前拥有${$.info.ddwCoinBalance}，保留三倍升级所需金币${data.ddwNextLvlCostCoin * 3}`)
-            if(data.dwCanLvlUp > 0 && $.info.ddwCoinBalance >= data.ddwNextLvlCostCoin * 3) {
+            if(data.dwCanLvlUp > 0 && $.info.ddwCoinBalance >= (data.ddwNextLvlCostCoin * 3)) {
               console.log(`【${buildNmae}】满足升级条件，开始升级`)
               const body = `ddwCostCoin=${data.ddwNextLvlCostCoin}&strBuildIndex=${data.strBuildIndex}`
               let buildLvlUpRes = await buildLvlUp(body)
@@ -1504,7 +1504,7 @@ function readShareCode() {
       try {
         if (err) {
           //console.log(`${JSON.stringify(err)}`)
-      //    console.log(`${$.name} API请求失败，请检查网路重试`)
+        //  console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
