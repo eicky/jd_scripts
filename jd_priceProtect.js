@@ -1,5 +1,5 @@
 /*
-cron 5 0 * * *
+cron 5 2 * * *
 update 2021/7/25
 京东价格保护：脚本更新地址 https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_priceProtect.js
 脚本兼容: QuantumultX, Node.js
