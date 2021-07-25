@@ -1,64 +1,117 @@
 /*
 真·抢京豆
-更新时间：2021-7-22
-备注：高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。
-cron 10 0 * * * https://raw.githubusercontent.com/cdle/jd_study/main/jd_angryBean.js
+更新时间：2021-7-25
+备注：高速并发抢京豆，专治偷助力。设置环境变量angryBeanPins为指定账号助力，默认不助力。环境变量angryBeanMode可选值priority(优先模式)、smart(智能模式)和speed(极速模式)，默认speed模式。默认推送通知，如要屏蔽通知需将环境变量enableAngryBeanNotify的值设为false。
+TG学习交流群：https://t.me/cdles
+0 0 * * * https://raw.githubusercontent.com/cdle/jd_study/main/jd_angryBean.js
 */
 const $ = new Env("真·抢京豆")
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`
-var pins = process.env.angryBeanPins ?? ""
-let cookiesArr = []
+const speed = "speed"
+const smart = "smart"
+var pins = $.isNode() ? (process.env.angryBeanPins ? process.env.angryBeanPins : "") : "";
+let cookiesArr = [];
 var helps = [];
 var tools = [];
 var maxTimes = 3;
-var finished = [];
+var finished = new Set();
+var init = [];
+var mode = $.isNode() ? (process.env.angryBeanMode ? process.env.angryBeanMode : "speed") : "priority";
+
 !(async () => {
-     if (!pins) {
+     if ($.isNode() && !pins) {
           console.log("请在环境变量中填写需要助力的账号")
           return
      }
+     console.log(`开启${mode}模式`)
      requireConfig()
      for (let i in cookiesArr) {
+          i = +i
           cookie = cookiesArr[i]
-          if (pins.indexOf(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]) != -1) {
-               await requestApi('signGroupHit', cookie, {
+          var tool = {
+               id: i,
+               cookie: cookie,
+               helps: new Set(),
+               times: 0,
+               timeout: 0,
+          }
+          var address = pins.indexOf(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+          if (!$.isNode() || address != -1) {
+               var data = await requestApi('signGroupHit', cookie, {
                     activeType: 2
                });
-               var data = await requestApi('signBeanGroupStageIndex', cookie, {
-                    rnVersion: "3.9",
-                    fp: "-1",
-                    shshshfp: "-1",
-                    shshshfpa: "-1",
-                    referUrl: "-1",
-                    userAgent: "-1",
-                    jda: "-1",
-                    monitor_source: "bean_m_bean_index"
-               });
-               groupCode = data?.data?.groupCode
-               shareCode = data?.data?.shareCode
-               activityId = data?.data?.activityMsg?.activityId
-               if (shareCode) {
-                    helps.push({
-                         id: +i,
-                         cookie: cookie,
-                         groupCode: groupCode,
-                         shareCode: shareCode,
-                         activityId: activityId,
-                         success: false,
-                    })
+               if (data && data.data && data.data.respCode) {
+                    if (data.data.respCode != "SG100") {
+                         data = await getTuanInfo(cookie)
+                         if (data && data.data && data.data.shareCode) {
+                              console.log(`账号${toChinesNum(i+1)}，准备抢京豆`)
+                              var help = {
+                                   id: i,
+                                   cookie: cookie,
+                                   groupCode: data.data.groupCode,
+                                   shareCode: data.data.shareCode,
+                                   activityId: data.data.activityMsg.activityId,
+                                   success: false,
+                                   address: address,
+                                   notYet: data.data.beanCountProgress.progressNotYet,
+                              }
+                              helps.push(help)
+                              if (mode == speed) {
+                                   tool.helps.add(i)
+                              }
+                              init.push(i)
+                         } else {
+                              console.log(`账号${toChinesNum(i+1)}，异常`)
+                         }
+                    } else {
+                         console.log(`账号${toChinesNum(i+1)}是黑号，快去怼客服吧`)
+                    }
+               } else {
+                    console.log(`账号${toChinesNum(i+1)}，登录信息过期了`)
                }
+
           }
-          tools.push({
-               id: +i,
-               cookie: cookie,
-               helps: [],
-               times: 0,
-          })
+          tools.push(tool)
      }
-     for (let help of helps)
-     open(help)
-     while (finished.length != helps.length)
-     await $.wait(100)
+     helps.sort((i, j) => {
+          return i.address > j.address ? 1 : -1
+     })
+     for (var k = 0; k < (mode == smart ? 6 : 1); k++) {
+          for (let help of helps) {
+               if (k != 0) {
+                    if (help.success) break
+                    cookie = help.cookie
+                    data = await getTuanInfo(cookie)
+                    if (data && data.data && data.data.shareCode) {
+                         help.notYet = data.data.beanCountProgress.progressNotYet
+                    }
+                    if (!help.notYet) break
+               }
+               await open(help)
+          }
+     }
+     if (mode == speed) {
+          while (finished.size != init.length)
+               await $.wait(100)
+     }
+     var beanCount = 0
+     var msg = ""
+     for (let help of helps) {
+          data = await getTuanInfo(help.cookie)
+          if (data) {
+               var sumBeanNum = +data.data.sumBeanNumStr
+               beanCount += sumBeanNum
+               out = `账号${toChinesNum(help.id+1)}，已抢京豆：${sumBeanNum}`
+               console.log(out)
+               msg += out + "\n"
+          }
+     }
+     out = `今日累计获得${beanCount}京豆`
+     console.log(out)
+     msg += out + "\n"
+     if (($.isNode() ? (process.env.enableAngryBeanNotify == "false" ? "false" : "true") : "false") == "true") {
+          require('./sendNotify').sendNotify(`真·抢京豆`, msg);
+     }
 })().catch((e) => {
           $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
      })
@@ -66,50 +119,100 @@ var finished = [];
           $.done();
      })
 
-function open(help) {
+async function getTuanInfo(cookie) {
+     return await requestApi('signBeanGroupStageIndex', cookie, {
+          rnVersion: "3.9",
+          fp: "-1",
+          shshshfp: "-1",
+          shshshfpa: "-1",
+          referUrl: "-1",
+          userAgent: "-1",
+          jda: "-1",
+          monitor_source: "bean_m_bean_index"
+     });
+}
+
+async function open(help) {
      var tool = tools.pop()
      if (!tool) {
-          finished.push(help.id)
+          finished.add(help.id)
           return
      }
-     requestApi('signGroupHelp', tool.cookie, {
-          activeType: 2,
-          groupCode: help.groupCode,
-          shareCode: help.shareCode,
-          activeId: help.activityId+"",
-          source: "guest",
-     }).then(function (data) {
-          var helpToast = data?.data?.helpToast
-          if(helpToast){
-               tool.helps.push(help.id)
-               console.log(`${tool.id+1}->${help.id+1} ${helpToast}`)
-               if(helpToast.indexOf("助力成功")!=-1){ //助力成功
-                    tool.times++
+     if (mode == smart && !help.notYet) {
+          return
+     }
+     if (mode == speed) {
+          tool.timeout++
+          ecpt = new Set(tool.helps, finished)
+          diff = new Set(init.filter(hid => !ecpt.has(hid)))
+          if (diff.size == 0 || tool.helps.has(help.id)) {
+               if (diff.size != 0 && tool.timeout < 10) {
+                    tools.unshift(tool)
                }
-               if(helpToast.indexOf("满")!=-1){ //该团已经满啦~去帮别人助力吧~
+               open(help)
+               return
+          }
+     } else {
+          if (tool.helps.has(help.id)) {
+               tool.helps.add(help.id)
+               tools.unshift(tool)
+               finished.add(help.id)
+               return
+          }
+          if (tool.id == help.id) {
+               tool.helps.add(help.id)
+               tools.unshift(tool)
+               await open(help)
+               return
+          }
+     }
+     async function handle(data) {
+          var helpToast = undefined
+          if (data && data.data && data.data.helpToast) {
+               helpToast = data.data.helpToast
+          }
+          if (helpToast) {
+               console.log(`${tool.id+1}->${help.id+1} ${helpToast}`)
+               if (helpToast.indexOf("助力成功") != -1) { //助力成功
+                    tool.times++
+                    help.notYet--
+               }
+               if (helpToast.indexOf("满") != -1) { //该团已经满啦~去帮别人助力吧~
                     help.success = true
                }
-               if(helpToast.indexOf("今日助力次数已达上限")!=-1){ //您今日助力次数已达上限~
+               if (helpToast.indexOf("今日助力次数已达上限") != -1) { //您今日助力次数已达上限~
                     tool.times = maxTimes
                }
-               if(helpToast.indexOf("火爆")!=-1){ //活动太火爆啦~请稍后再试~
+               if (helpToast.indexOf("火爆") != -1) { //活动太火爆啦~请稍后再试~
                     tool.times = maxTimes
                }
-          }
-          if(tool.times < maxTimes){
-               if(Array.from(new Set(tool.helps)).length != helps.length){
+               if (tool.times < maxTimes) {
                     tools.unshift(tool)
                }
           }
-          if(!help.success){
-               open(help)
-          }else{
-               finished.push(help.id)
+          tool.helps.add(help.id)
+          if (!help.success) {
+               await open(help)
+          } else {
+               finished.add(help.id)
           }
-     })
+     }
+     var params = {
+          activeType: 2,
+          groupCode: help.groupCode,
+          shareCode: help.shareCode,
+          activeId: help.activityId + "",
+          source: "guest",
+     }
+     if (mode != "speed") {
+          data = await requestApi('signGroupHelp', tool.cookie, params)
+          await handle(data)
+     } else {
+          requestApi('signGroupHelp', tool.cookie, params).then(handle)
+     }
 }
 
-function requestApi(functionId, cookie, body = {}) {
+function requestApi(functionId, cookie, body = {}, time = 0) {
      var url = `https://api.m.jd.com/client.action?functionId=${functionId}&body=${JSON.stringify(body)}&appid=ld&client=apple&clientVersion=10.0.4&networkType=wifi&osVersion=13.7&uuid=&openudid=`
      return new Promise(resolve => {
           $.get({
@@ -125,21 +228,45 @@ function requestApi(functionId, cookie, body = {}) {
                     "User-Agent": ua,
                     "Host": "api.m.jd.com",
                },
+               timeout: 2500,
           }, (_, resp, data) => {
-               try {
-                    data = JSON.parse(data)
-               } catch (e) {
-                    $.logErr('Error: ', e, resp)
-               } finally {
-                    resolve(data)
+               if (data) {
+                    resolve(JSON.parse(data))
+               } else {
+                    if (time == 5) {
+                         resolve(0)
+                    } else {
+                         requestApi(functionId, cookie, body, time + 1).then(function (data) {
+                              resolve(data)
+                         })
+                    }
                }
           })
      })
 }
 
+let toChinesNum = (num) => {
+     let changeNum = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
+     let unit = ["", "十", "百", "千", "万"];
+     num = parseInt(num);
+     let getWan = (temp) => {
+          let strArr = temp.toString().split("").reverse();
+          let newNum = "";
+          for (var i = 0; i < strArr.length; i++) {
+               newNum = (i == 0 && strArr[i] == 0 ? "" : (i > 0 && strArr[i] == 0 && strArr[i - 1] == 0 ? "" : changeNum[strArr[i]] + (strArr[i] == 0 ? unit[0] : unit[i]))) + newNum;
+          }
+          return newNum;
+     }
+     let overWan = Math.floor(num / 10000);
+     let noWan = num % 10000;
+     if (noWan.toString().length < 4) {
+          noWan = "0" + noWan;
+     }
+     return overWan ? getWan(overWan) + "万" + getWan(noWan) : getWan(num);
+}
+
 function requireConfig() {
      return new Promise(resolve => {
-          notify = $.isNode() ? require('./sendNotify') : '';
           const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
           if ($.isNode()) {
                Object.keys(jdCookieNode).forEach((item) => {
