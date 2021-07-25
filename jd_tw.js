@@ -3,7 +3,7 @@
 cron 23 0,9 24-27 7 *
 要跑2次，第一次做任务和脚本内互助，第二次才够币抽奖
 */
-const $ = new Env('特务Z star261版');
+const $ = new Env('特务Z');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [];
@@ -68,7 +68,7 @@ if ($.isNode()) {
   //     await $.wait(2000);
   //   }
   // }
-
+  
   for (let i = 0; i < cookiesArr.length; i++) {
     $.cookie = cookiesArr[i];
     $.canHelp = true;
@@ -146,7 +146,6 @@ async function doTask(){
     }
   }
 }
-
 async function takePostRequest(type) {
   let url = ``;
   let myRequest = ``;
@@ -242,7 +241,6 @@ function dealReturn(type, data) {
       console.log(JSON.stringify(data));
   }
 }
-
 function getAuthorShareCode(url) {
   return new Promise(async resolve => {
     const options = {
