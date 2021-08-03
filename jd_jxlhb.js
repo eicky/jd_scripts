@@ -1,6 +1,7 @@
 /*
 京喜领88元红包
 活动入口：京喜app-》我的-》京喜领88元红包
+助力逻辑：先自己京东账号相互助力，如有剩余助力机会，则助力作者
 温馨提示：如提示助力火爆，可尝试寻找京东客服
 脚本兼容: Quantumult X, Surge, Loon, JSBox, Node.js
 ==============Quantumult X==============
@@ -42,6 +43,7 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
   }
   console.log('京喜领88元红包\n' +
       '活动入口：京喜app-》我的-》京喜领88元红包\n' +
+      '助力逻辑：先自己京东账号相互助力，如有剩余助力机会，则助力作者\n' +
       '温馨提示：如提示助力火爆，可尝试寻找京东客服')
   let res = []
   res = await getAuthorShareCode('')
@@ -73,7 +75,7 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
   }
   //互助
   console.log(`\n\n自己京东账号助力码：\n${JSON.stringify($.packetIdArr)}\n\n`);
-  console.log(`\n开始助力：\n`)
+  console.log(`\n开始助力：助力逻辑 先自己京东相互助力，如有剩余助力机会，则助力作者\n`)
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
@@ -166,16 +168,18 @@ function getUserInfo() {
           // console.log('获取助力码', data)
           data = JSON.parse(data)
           if (data.iRet === 0) {
-            $.grades = [];
+            $.grades = []
+            $.helpNum = ''
             let grades = data.Data.gradeConfig
             for(let key of Object.keys(grades)){
               let vo = grades[key]
               $.grades.push(vo.dwGrade)
+              $.helpNum = vo.dwHelpTimes
             }
-            console.log(`获取助力码成功：${data.Data.strUserPin}\n`);
-            if (data.Data['dwCurrentGrade'] >= $.grades[$.grades.length - 1]) {
+            if (data.Data.dwHelpedTimes === $.helpNum) {
               console.log(`${$.grades[$.grades.length - 1]}个阶梯红包已全部拆完\n`)
             } else {
+              console.log(`获取助力码成功：${data.Data.strUserPin}\n`);
               if (data.Data.strUserPin) {
                 $.packetIdArr.push({
                   strUserPin: data.Data.strUserPin,
@@ -330,9 +334,9 @@ function taskurl(function_path, body = '', stk) {
 function TotalBean() {
   return new Promise(async resolve => {
     const options = {
-      url: "https://wq.jd.com/user_new/info/GetJDUserInfoUnion?sceneval=2",
+      url: "https://me-api.jd.com/user_new/info/GetJDUserInfoUnion",
       headers: {
-        Host: "wq.jd.com",
+        Host: "me-api.jd.com",
         Accept: "*/*",
         Connection: "keep-alive",
         Cookie: cookie,
@@ -349,11 +353,11 @@ function TotalBean() {
         } else {
           if (data) {
             data = JSON.parse(data);
-            if (data['retcode'] === 1001) {
+            if (data['retcode'] === "1001") {
               $.isLogin = false; //cookie过期
               return;
             }
-            if (data['retcode'] === 0 && data.data && data.data.hasOwnProperty("userInfo")) {
+            if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
               $.nickName = data.data.userInfo.baseInfo.nickname;
             }
           } else {
