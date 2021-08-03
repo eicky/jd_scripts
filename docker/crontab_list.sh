@@ -106,6 +106,7 @@
 38 8,13 * * * node /scripts/jd_mdou.js >> /scripts/logs/jd_mdou.log 2>&1
 0 1 * * * node /scripts/jd_cleancart.js >> /scripts/logs/jd_cleancart.log 2>&1
 2 2 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
+2 12 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 55 6 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
 23 9,13 24-27 7 * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
 11 12,20 * * * node /scripts/jd_summer_movement_bet.js >> /scripts/logs/jd_summer_movement_bet.log 2>&1
