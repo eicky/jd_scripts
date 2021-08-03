@@ -1,12 +1,7 @@
 /*
-入口 京东众筹 许愿池 
-====================
-新手上路勿黑勿喷
-TG通知群 https://t.me/ningmeng999
-微信公众号:柠檬玩机交流
-[task_local]
-#柠檬许愿池 
-0 8,12 * * * 
+
+cron "0 8,12 * * *"  jd_wish.js
+
 */
 const $ = new Env('柠檬众筹许愿池');
 const notify = $.isNode() ? require("./sendNotify") : "";
@@ -86,7 +81,7 @@ function task() {
                 let options = {
     url: `https://api.m.jd.com/client.action`,
 
-    body: `functionId=healthyDay_getHomeData&body={"appId":"1EFVQwQ","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`,
+    body: `functionId=healthyDay_getHomeData&body={"appId":"1E1NXxq0","taskToken":"","channelId":1}&client=wh5&clientVersion=1.0.0`,
 headers: {
 "Origin": "https://h5.jd.com",
 "Host": "api.m.jd.com",
@@ -125,13 +120,13 @@ headers: {
                    await dotask(tk,taskId,1)
                    await $.wait(15000)
                    await dotask(tk,taskId,0)
-                   $.log(`===============每浏览商品15s可获得200金币===============`)
+                   $.log(`===============每浏览商品10s可获得200金币===============`)
                    tk =tasklist[2].productInfoVos[0].taskToken 
                    taskId = tasklist[2].taskId
                    item = tasklist[2].productInfoVos[0].itemId
                    await dotask(tk,taskId,0,item)
                    await dotask(tk,taskId,1,item)
-                   await $.wait(15000)
+                   await $.wait(11000)
                    await dotask(tk,taskId,0,item)
                    
                    tk =tasklist[2].productInfoVos[1].taskToken 
@@ -139,28 +134,28 @@ headers: {
                    item = tasklist[2].productInfoVos[1].itemId
                    await dotask(tk,taskId,0,item)
                    await dotask(tk,taskId,1,item)
-                   await $.wait(15000)
+                   await $.wait(11000)
                    await dotask(tk,taskId,0,item)
                    tk =tasklist[2].productInfoVos[2].taskToken 
                    taskId = tasklist[2].taskId
                    item = tasklist[2].productInfoVos[2].itemId
                    await dotask(tk,taskId,0,item)
                    await dotask(tk,taskId,1,item)
-                   await $.wait(15000)
+                   await $.wait(11000)
                    await dotask(tk,taskId,0,item)
                    tk =tasklist[2].productInfoVos[3].taskToken
                    item = tasklist[2].productInfoVos[3].itemId
                    taskId = tasklist[2].taskId
                    await dotask(tk,taskId,0,item)
                    await dotask(tk,taskId,1,item)
-                   await $.wait(15000)
+                   await $.wait(11000)
                    await dotask(tk,taskId,0,item)
                    tk =tasklist[2].productInfoVos[4].taskToken 
                    item = tasklist[2].productInfoVos[4].itemId
                    taskId = tasklist[2].taskId
                    await dotask(tk,taskId,0,item)
                    await dotask(tk,taskId,1,item)
-                   await $.wait(15000)
+                   await $.wait(11000)
                    await dotask(tk,taskId,0,item)
                    $.log(`===============邀请一个好友助力可获得300金币===============`)
                    tk =tasklist[3].assistTaskDetailVo.taskToken
@@ -230,7 +225,7 @@ function help(taskToken,taskId,actionType,itemId) {
                 let options = {
     url: `https://api.m.jd.com/client.action`,
 
-    body: `functionId=harmony_collectScore&body={"appId":"1EFVQwQ","taskToken":"${taskToken}","taskId":${taskId},"itemId":"${itemId}","actionType":${actionType}}&client=wh5&clientVersion=1.0.0`,
+    body: `functionId=harmony_collectScore&body={"appId":"1E1NXxq0","taskToken":"${taskToken}","taskId":${taskId},"itemId":"${itemId}","actionType":${actionType}}&client=wh5&clientVersion=1.0.0`,
 headers: {
 "Origin": "https://h5.jd.com",
 "Host": "api.m.jd.com",
@@ -268,7 +263,7 @@ function dotask(taskToken,taskId,actionType,itemId) {
                 let options = {
     url: `https://api.m.jd.com/client.action`,
 
-    body: `functionId=harmony_collectScore&body={"appId":"1EFVQwQ","taskToken":"${taskToken}","taskId":${taskId},"itemId":"${itemId}","actionType":${actionType}}&client=wh5&clientVersion=1.0.0`,
+    body: `functionId=harmony_collectScore&body={"appId":"1E1NXxq0","taskToken":"${taskToken}","taskId":${taskId},"itemId":"${itemId}","actionType":${actionType}}&client=wh5&clientVersion=1.0.0`,
 headers: {
 "Origin": "https://h5.jd.com",
 "Host": "api.m.jd.com",
@@ -305,7 +300,7 @@ function getLottery() {
                 let options = {
     url: `https://api.m.jd.com/client.action`,
 
-    body: `functionId=interact_template_getLotteryResult&body={"appId":"1EFVQwQ"}&client=wh5&clientVersion=1.0.0`,
+    body: `functionId=interact_template_getLotteryResult&body={"appId":"1E1NXxq0"}&client=wh5&clientVersion=1.0.0`,
 headers: {
 "Origin": "https://h5.jd.com",
 "Host": "api.m.jd.com",
@@ -326,7 +321,7 @@ headers: {
      $.log(data.data.result.userAwardsCacheDto.jBeanAwardVo.prizeName)
      allMessage += `京东账号${$.index}-${$.nickName || $.UserName}\n抽奖京豆: ${data.data.result.userAwardsCacheDto.jBeanAwardVo.quantity}${$.index !== cookiesArr.length ? '\n\n' : '\n\n'}`;
                  }else 
-                 $.log(`叼毛 恭喜你 几把毛都没抽到`)
+                 $.log(`啥都没抽到`)
                  
                  
                  
