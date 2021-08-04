@@ -14,7 +14,7 @@
 第一个账号助力我 其他依次助力CK1
 第一个CK失效应该全都会助力我，亲注意一下
 入口复制到jd：
-29.0复制整段话 http:/J4rCgGUKdBvsP7 大牌联合送福利，免费领京豆#3BFunBmMVb%=》倞※㚵guang逛
+27.0复制整段话 Http:/JY4t8ioBkCLZnF 大牌联合送福利，免费领京豆#FEa6iFUFUb%后扌丁开乛倞崬
 
 更新地址：https://github.com/Tsukasa007/my_script
 ============Quantumultx===============
@@ -71,7 +71,7 @@ if (!$.isNode() || !process.env.JD_OPENCARD_EAT_OPEN_OPENCARD) {
         });
         return;
     }
-    $.shareUuid = '0a989c0c658c47a3be93dfa8b6cee38f'
+    $.shareUuid = 'a399d620a6c0481ab25bbc30e419fe10'
     for (let i = 0; i < cookiesArr.length; i++) {
         cookie = cookiesArr[i];
         if (cookie) {
