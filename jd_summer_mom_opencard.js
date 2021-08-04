@@ -13,7 +13,8 @@
 第一个账号助力我 其他依次助力CK1
 第一个CK失效应该全都会助力我，亲注意一下
 入口复制到jd：
-25.0复制整段话 https:/JPkl98ZaiIQyUP 母婴大牌甄选，惊喜好礼免费送#r3NjA82fYb%kankan婛※栋
+22.0复制整段话 http:/JZkHLzK3y0opDM 母婴大牌甄选，惊喜好礼免费送￥65iIe76yzb￥咑開京岽app
+
 
 更新地址：https://github.com/Tsukasa007/my_script
 ============Quantumultx===============
@@ -68,7 +69,7 @@ if (!process.env.JD_SUMMER_MOM_OPENCARD) {
     });
     return;
   }
-  $.shareUuid = 'd1269f3422444e3c838fd85434c28e83'
+  $.shareUuid = '8f969502befd42d58c753836bcbbc956'
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
     if (cookie) {
