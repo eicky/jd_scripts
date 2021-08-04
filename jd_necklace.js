@@ -19,7 +19,7 @@ cron "10 0-20/5 * * *" script-path=jd_necklace.js,tag=点点券
 点点券 = type=cron,script-path=jd_necklace.js, cronexpr="10 0,20 * * *", timeout=3600, enable=true
  */
 const $ = new Env('点点券');
-const ZooFaker=require('./ZooFaker_Necklace.js').utils;
+const ZooFaker=require('./utils/ZooFaker_Necklace.js').utils;
 let allMessage = ``;
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
