@@ -14,7 +14,8 @@
 第一个账号助力我 其他依次助力CK1
 第一个CK失效应该全都会助力我，亲注意一下
 入口复制到jd：
-21.0复制整段话 http:/J1ApayERsNEA3p 奶爸盛典重磅福利！惊喜京豆立即领取，更多实物惊喜大奖#v8JE652j6a@扌丁kai鶁崠
+29.0复制整段话 Https:/JU6oTzeFZn9XjH 奶爸盛典重磅福利！惊喜京豆立即领取，更多实物惊喜大奖#2CNZV9rVba@祛→亰岽逛逛GO
+
 
 更新地址：https://github.com/Tsukasa007/my_script
 ============Quantumultx===============
@@ -71,7 +72,7 @@ if (!$.isNode() || !process.env.JD_OPENCARD_DADDY) {
         });
         return;
     }
-    $.shareUuid = '8fc7557f04bc448e92d690f6b60f25b1'
+    $.shareUuid = '8b65ec44887441beb567c5026b9b0a5e'
     for (let i = 0; i < cookiesArr.length; i++) {
         cookie = cookiesArr[i];
         if (cookie) {
