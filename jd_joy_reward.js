@@ -106,6 +106,7 @@ async function joyReward() {
         console.log(`等待时间 ${sleeptime / 1000}`);
         await zooFaker.sleep(sleeptime)
       }
+    }
     for (let j = 0; j <= 10; j++) {
       await getExchangeRewards();
       if ($.getExchangeRewardsRes && $.getExchangeRewardsRes.success) {
