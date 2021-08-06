@@ -1,8 +1,6 @@
 /*
-
-#清空购物车
-cron "0 1 * * *"jd_cleancart.js, tag=清空购物车, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
-
+清空购物车
+cron "1 1 * * *"jd_cleancart.js
  */
 const $ = new Env('清空购物车');
 //Node.js用户请在jdCookie.js处填写京东ck;
