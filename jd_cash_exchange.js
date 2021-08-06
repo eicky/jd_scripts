@@ -2,7 +2,7 @@
 签到领现金兑换
 需要填写exchangeAccounts参数，兑换多少取决于app内显示，默认为所有账号兑换10红包，部分账号会出现参数错误的提示。指定账号+金额应这样填写 
 export exchangeAccounts="pt_pin1@2&pt_pin2@10"
-cron 0 0 * * * https://raw.githubusercontent.com/yuannian1112/jd_scripts/main/jd_cash_exchange.js
+cron "0 0 * * *" jd_cash_exchange.js
 */
 const $ = new Env("签到领现金兑换")
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`

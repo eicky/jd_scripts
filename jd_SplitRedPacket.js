@@ -4,8 +4,7 @@
 入口：我的-赚30
 备注：赚30元每日签到红包、天降红包助力，在earn30Pins环境变量中填入需要签到和接受助力的账号。
 技巧：每月可以提现100元，但需要邀请一个新人下首单。可以用已注册手机号重新注册为新人账号，切换ip可以提高成功率。
-TG学习交流群：https://t.me/cdles
-3 1,6 * * * https://raw.githubusercontent.com/cdle/jd_study/main/jd_earn30.js
+cron "35 0,1 * * *" jd_SplitRedPacket.js
 */
 const $ = new Env("赚30元")
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
