@@ -1,7 +1,7 @@
 /*
 [task_local]
 #星系牧场
-1 8 * * * https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/jd_wxFans.js, tag=粉丝互动, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+cron "1 8 * * *" https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd/jd_wxFans.js, tag=粉丝互动, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 const $ = new Env('超级粉丝互动');
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -26,7 +26,7 @@ if ($.isNode()) {
 const JD_API_HOST = `https://api.m.jd.com/client.action`;
 message = ""
 $.shareuuid = ""
-$.actid = "aae88e19901340a28b604f5cf5b61dd6"
+$.actid = "162c43699ba945e8adb83b2bd5fe0142"
 !(async () => {
         if (!cookiesArr[0]) {
             $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {

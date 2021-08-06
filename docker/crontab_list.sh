@@ -5,7 +5,7 @@
 
 ##############活动##############
 0 6 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
-0 0-16/8 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
+59 7,15,23 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
 20 0-23/6 * * * node /scripts/jd_dreamfactory_tuan.js >> /scripts/logs/jd_dreamfactory_tuan.log 2>&1
 10 6,20 * * * node /scripts/jd_necklace.js >> /scripts/logs/jd_necklace.log 2>&1
 0 3,8 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
@@ -46,7 +46,6 @@
 0 0-23/1 * * * node /scripts/jd_super_redrain.js >> /scripts/logs/jd_super_redrain.log 2>&1
 10 1 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
 13 2,5,20 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
-1 1,2 * * * node /scripts/jd_ppdz.js >> /scripts/logs/jd_ppdz.log 2>&1
 20 0,1 * * * node /scripts/jd_SplitRedPacket.js >> /scripts/logs/jd_SplitRedPacket.log 2>&1
 10 2 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 1 2,15,19 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
@@ -94,7 +93,6 @@
 5 0 * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
 10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
 18 4,11 * * * node /scripts/jd_jxg.js >> /scripts/logs/jd_jxg.log 2>&1
-0 0 * * * node /scripts/jd_health_exchange.js >> /scripts/logs/jd_health_exchange.log 2>&1
 10 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
 10 1,5 * * * node /scripts/jd_sqdyj.js >> /scripts/logs/jd_sqdyj.log 2>&1
 20 6,7 * * * node /scripts/jd_morningSc.js >> /scripts/logs/jd_morningSc.log 2>&1
@@ -106,7 +104,16 @@
 59 11,12,23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 19 9,12 * * * node /scripts/jd_mb.js >> /scripts/logs/jd_mb.log 2>&1
 38 8,13 * * * node /scripts/jd_mdou.js >> /scripts/logs/jd_mdou.log 2>&1
-23 9,13 24-27 7 * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
+0 1 * * * node /scripts/jd_cleancart.js >> /scripts/logs/jd_cleancart.log 2>&1
+2 2 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
+2 12 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
+55 6 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
+23 9,13 24-27 7 * node /scripts/jd_opencard4.js >> /scripts/logs/jd_opencard4.log 2>&1
+0 5 * * * node /scripts/jd_opencard_Daddy.js >> /scripts/logs/jd_opencard_Daddy.log 2>&1
+38 0,8 5-12 8 node /scripts/jd_opencard5.js >> /scripts/logs/jd_opencard5.log 2>&1
+30 0,8 * 8 * node /scripts/jd_opencard6.js >> /scripts/logs/jd_opencard6.log 2>&1
+0 5 * * * node /scripts/jd_summer_mom_opencard.js >> /scripts/logs/jd_summer_mom_opencard.log 2>&1
+0 5 * * * node /scripts/jd_opencard_eat_open_opencard.js >> /scripts/logs/jd_opencard_eat_open_opencard.log 2>&1
 11 12,20 * * * node /scripts/jd_summer_movement_bet.js >> /scripts/logs/jd_summer_movement_bet.log 2>&1
 23 1,6,12,21 * * * node /scripts/jd_jxlhb.js >> /scripts/logs/jd_jxlhb.log 2>&1
 1 6,7 * * * python3 /jd/scripts/jd_zqfl.py >> /jd/log/jd_zqfl.log 2>&1
