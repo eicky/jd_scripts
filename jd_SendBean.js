@@ -1,7 +1,7 @@
 /*
 * 来客有礼小程序
 搬运不知名大佬的脚本
-cron "18 0 * * *"
+cron "18 0 * * *" jd_SendBean.js
 * */
 const $ = new Env('送豆得豆自动版');
 const notify = $.isNode() ? require('./sendNotify') : '';
