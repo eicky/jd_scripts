@@ -23,7 +23,7 @@ const $ = new Env("东东健康社区");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require('./sendNotify') : "";
 let cookiesArr = [], cookie = "", allMessage = "", message;
-const inviteCodes = ['']
+const inviteCodes = []
 let reward = process.env.JD_HEALTH_REWARD_NAME ? process.env.JD_HEALTH_REWARD_NAME : ''
 const randomCount = $.isNode() ? 20 : 5;
 if ($.isNode()) {
@@ -140,35 +140,24 @@ function getTaskDetail(taskId = '') {
               await doTask(data?.data?.result?.taskVos[0].shoppingActivityVos[0]?.taskToken, 22, 1)//领取任务
               await $.wait(1000 * (data?.data?.result?.taskVos[0]?.waitDuration || 3));
               await doTask(data?.data?.result?.taskVos[0].shoppingActivityVos[0]?.taskToken, 22, 0);//完成任务
-            } else {
-              for (let vo of data?.data?.result?.taskVos.filter(vo => vo.taskType !== 19) ?? []) {
-                console.log(`${vo.taskName}任务，完成次数：${vo.times}/${vo.maxTimes}`)
-                for (let i = vo.times; i < vo.maxTimes; i++) {
-                  console.log(`去完成${vo.taskName}任务`)
-                  if (vo.taskType === 13) {
-                    await doTask(vo.simpleRecordInfoVo?.taskToken, vo?.taskId)
-                  } else if (vo.taskType === 8) {
-                    await doTask(vo.productInfoVos[i]?.taskToken, vo?.taskId, 1)
-                    await $.wait(1000 * 10)
-                    await doTask(vo.productInfoVos[i]?.taskToken, vo?.taskId, 0)
-                  } else if (vo.taskType === 9) {
-                    await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId, 1)
-                    await $.wait(1000 * 10)
-                    await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId, 0)
-                  } else if (vo.taskType === 10) {
-                    await doTask(vo.threeMealInfoVos[0]?.taskToken, vo?.taskId)
-                  } else if (vo.taskType === 26 || vo.taskType === 3) {
-                    await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId)
-                  } else if (vo.taskType === 1) {
-                    for (let key of Object.keys(vo.followShopVo)) {
-                      let taskFollow = vo.followShopVo[key]
-                      if (taskFollow.status !== 2) {
-                        await doTask(taskFollow.taskToken, vo.taskId, 0)
-                        break
-                      }
-                    }
-                  }
-                  await $.wait(2000)
+            } else for (let vo of data?.data?.result?.taskVos.filter(vo => vo.taskType !== 19) ?? []) {
+              console.log(`${vo.taskName}任务，完成次数：${vo.times}/${vo.maxTimes}`)
+              for (let i = vo.times; i < vo.maxTimes; ++i) {
+                console.log(`去完成${vo.taskName}任务`)
+                if (vo.taskType === 13) {
+                  await doTask(vo.simpleRecordInfoVo?.taskToken, vo?.taskId)
+                } else if (vo.taskType === 8) {
+                  await doTask(vo.productInfoVos[i]?.taskToken, vo?.taskId, 1)
+                  await $.wait(1000 * 10)
+                  await doTask(vo.productInfoVos[i]?.taskToken, vo?.taskId, 0)
+                } else if (vo.taskType === 9) {
+                  await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId, 1)
+                  await $.wait(1000 * 10)
+                  await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId, 0)
+                } else if (vo.taskType === 10) {
+                  await doTask(vo.threeMealInfoVos[0]?.taskToken, vo?.taskId)
+                } else if (vo.taskType === 26 || vo.taskType === 3) {
+                  await doTask(vo.shoppingActivityVos[0]?.taskToken, vo?.taskId)
                 }
               }
             }
@@ -319,13 +308,13 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `http://share.turinglabs.net/api/v3/health/query/${randomCount}/`,
+      url: ``,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} health/read API请求失败，请检查网路重试`)
+         // console.log(`${JSON.stringify(err)}`)
+          //console.log(`${$.name} health/read API请求失败，请检查网路重试`)
         } else {
           if (data) {
             console.log(`随机取${randomCount}个码放到您固定的互助码后面(不影响已有固定互助)`)
