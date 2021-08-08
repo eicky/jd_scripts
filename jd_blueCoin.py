@@ -9,6 +9,7 @@ update: 2021/7/18 00:30
 TG交流 https://t.me/topstyle996
 TG频道 https://t.me/TopStyle2021
 建议cron: 59 23 * * *  python3 jd_blueCoin.py
+new Env('东东超市商品兑换py并发版');
 '''
 ################【参数】######################
 # ck 优先读取【JDCookies.txt】 文件内的ck  再到 ENV的 变量 JD_COOKIE='ck1&ck2' 最后才到脚本内 cookies=ck

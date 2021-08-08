@@ -6,5 +6,9 @@
 /CookieSet.json
 /jdCookie.js
 /logs
+<<<<<<< HEAD
 /JD_DailyBonus.js
+=======
+# /JD_DailyBonus.js
+>>>>>>> main
 /result.txt

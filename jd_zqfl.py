@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*
 """
+建议cron: 40 0,1 * * *  python3 jd_zqfl.py
+new Env('领京豆-早起福利');
 领京豆-早起福利，每天8点前访问领取额外京豆奖励
 """
 
