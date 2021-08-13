@@ -62,7 +62,7 @@
 40 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
 46 6,13,22 * * * node /scripts/jd_small_home.js >> /scripts/logs/jd_small_home.log 2>&1
 16 9,15,17 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
-30 16 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+30 10,18 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 1 4,10,20 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
 42 0-23/6 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 0 8 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
