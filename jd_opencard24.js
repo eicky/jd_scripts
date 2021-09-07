@@ -74,7 +74,7 @@ message = ""
       return
     }
   }
-  $.shareUuid = '814e2d8458c7402ba088c0efe0e4274d'
+  $.shareUuid = ''
   $.activityId = 'dz2109100000119501'
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/midautumn/jointactivity/activity/9367058?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   for (let i = 0; i < cookiesArr.length && true; i++) {
