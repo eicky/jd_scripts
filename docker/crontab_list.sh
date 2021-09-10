@@ -231,6 +231,8 @@
 5 2,5,16 * * * node /scripts/jd_connoisseur.js >> /scripts/logs/jd_connoisseur.log 2>&1
 # 明星小店
 10 9,18 * * * node /scripts/jd_star_shop.js >> /scripts/logs/jd_star_shop.log 2>&1
+#
+0 6 * * * node /scripts/jd_focus.js >> /scripts/logs/jd_focus.log 2>&1
 #早起签到
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
