@@ -15,8 +15,6 @@
 0 3,8 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
 #qq星
 20 1-23/2 * * * node /scripts/jd_qqxing.js >> /scripts/logs/jd_qqxing.log 2>&1
-#天天提鹅
-40 * * * * node /scripts/jd_daily_egg.js >> /scripts/logs/jd_daily_egg.log 2>&1
 #东东超市兑换奖品
 59 23 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
 #财富岛
@@ -111,21 +109,14 @@
 46 6,13,22 * * * node /scripts/jd_small_home.js >> /scripts/logs/jd_small_home.log 2>&1
 #美丽研究院
 16 9,15,17 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
-<<<<<<< HEAD
 #
 30 10,18 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
-=======
-#京东试用
-30 10 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
->>>>>>> main
 #
 1 4,10,20 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
 #领现金
 42 0-23/6 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 #赚金币
 0 8 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
-#京东图书
-1 9,13,19 * * * node /scripts/jd_bookshop.js >> /scripts/logs/jd_bookshop.log 2>&1
 #
 # 0 6 * * * node /scripts/getJDCookie.js >> /scripts/logs/getJDCookie.log 2>&1
 #京东赚赚
@@ -194,10 +185,8 @@
 45 2,20 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 #开卡20
 30 8,2 1-21 9 * node /scripts/jd_opencard20.js >> /scripts/logs/jd_opencard20.log 2>&1
-#开卡22
-34 5,17 3-13 9 * node /scripts/jd_opencard22.js >> /scripts/logs/jd_opencard22.log 2>&1
 #开卡23
-34 4,16 3-10 9 * node /scripts/jd_opencard23.js >> /scripts/logs/jd_opencard23.log 2>&1
+34 4,16 3-17 9 * node /scripts/jd_opencard23.js >> /scripts/logs/jd_opencard23.log 2>&1
 #开卡24
 24 3,18 6-17 9 * node /scripts/jd_opencard24.js >> /scripts/logs/jd_opencard24.log 2>&1
 #开卡25
@@ -208,6 +197,12 @@
 5 0,15 * * * node /scripts/jd_opencard27.js >> /scripts/logs/jd_opencard27.log 2>&1
 #开卡28
 28 1,19 9-16 9 * node /scripts/jd_opencard28.js >> /scripts/logs/jd_opencard28.log 2>&1
+#开卡29
+4 4,19 13-23 9 * node /scripts/jd_opencard29.js >> /scripts/logs/jd_opencard29.log 2>&1
+#开卡30
+22 1,18 1-22 * * node /scripts/jd_opencard30.js >> /scripts/logs/jd_opencard30.log 2>&1
+#希捷品牌日瓜分百万京豆
+17 2,10 * 9,10 * node /scripts/jd_UnknownTask4.js >> /scripts/logs/jd_UnknownTask4.log 2>&1
 #积分换话费
 43 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 领券中心签到
@@ -232,6 +227,10 @@
 10 9,18 * * * node /scripts/jd_star_shop.js >> /scripts/logs/jd_star_shop.log 2>&1
 # 京喜财富岛月饼
 5 * * * * node /scripts/jd_cfd_mooncake.js >> /scripts/logs/jd_cfd_mooncake.log 2>&1
+# 影像馆
+23 10,21 13-26 9 * node /scripts/jd_film_museum.js >> /scripts/logs/jd_film_museum.log 2>&1
+# 企有此礼
+30 0 * * * node /scripts/jd_qycl.js >> /scripts/logs/jd_qycl.log 2>&1
 #
 0 6 * * * node /scripts/jd_focus.js >> /scripts/logs/jd_focus.log 2>&1
 #早起签到
