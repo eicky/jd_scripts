@@ -189,8 +189,6 @@
 17 2,20 8-30 9 * node /scripts/jd_opencard26.js >> /scripts/logs/jd_opencard26.log 2>&1
 #开卡27
 5 0,15 * * * node /scripts/jd_opencard27.js >> /scripts/logs/jd_opencard27.log 2>&1
-#开卡29
-4 4,19 13-23 9 * node /scripts/jd_opencard29.js >> /scripts/logs/jd_opencard29.log 2>&1
 #开卡33
 34 4,19 18-28 9 * node /scripts/jd_opencard33.js >> /scripts/logs/jd_opencard33.log 2>&1
 #开卡34
@@ -235,8 +233,6 @@
 20 0,16 * * * node /scripts/jd_ddwj.js >> /scripts/logs/jd_ddwj.log 2>&1
 # 热血心跳,狂解压
 5 6,18 * * * node /scripts/jd_decompression.js >> /scripts/logs/jd_decompression.log 2>&1
-#
-0 6 * * * node /scripts/jd_focus.js >> /scripts/logs/jd_focus.log 2>&1
 #早起签到
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
