@@ -148,7 +148,7 @@
 #粉丝互动
 4 0 * * * node /scripts/jd_wxFans.js >> /scripts/logs/jd_wxFans.log 2>&1
 #财富岛气球
-5 0 * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
+5 * * * * node /scripts/jd_cfd_loop.js >> /scripts/logs/jd_cfd_loop.log 2>&1
 #宠汪汪偷狗粮
 40 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
 #京小鸽
@@ -181,12 +181,8 @@
 20 5,10 * * * node /scripts/jd_fcdyj.js >> /scripts/logs/jd_fcdyj.log 2>&1
 #女装盲盒
 45 2,20 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
-#开卡26
-17 2,20 8-30 9 * node /scripts/jd_opencard26.js >> /scripts/logs/jd_opencard26.log 2>&1
 #开卡27
 5 0,15 * * * node /scripts/jd_opencard27.js >> /scripts/logs/jd_opencard27.log 2>&1
-#开卡36
-18 2,14 22-30 9 * node /scripts/jd_opencard36.js >> /scripts/logs/jd_opencard36.log 2>&1
 #开卡39
 45 2,22 * * * node /scripts/jd_opencard39.js >> /scripts/logs/jd_opencard39.log 2>&1
 #积分换话费
