@@ -48,8 +48,6 @@
 #
 40 * * * * node /scripts/jx_mc_coin.js >> /scripts/logs/jx_mc_coin.log 2>&1
 #
-0,30 0-23/1 * * * node /scripts/jd_live_redrain.js >> /scripts/logs/jd_live_redrain.log 2>&1
-#
 5 3,19 * * * node /scripts/jd_unsubscribe.js >> /scripts/logs/jd_unsubscribe.log 2>&1
 #东东萌宠
 45 6-18/6 * * * node /scripts/jd_pet.js >> /scripts/logs/jd_pet.log 2>&1
@@ -185,6 +183,8 @@
 22 1,18 8-14 * * node /scripts/jd_opencard40.js >> /scripts/logs/jd_opencard40.log 2>&1
 #开卡41
 30 8,20 8-18 * * node /scripts/jd_opencard41.js >> /scripts/logs/jd_opencard41.log 2>&1
+#开卡43
+47 4 11-26 10 * node /scripts/jd_opencard43.js >> /scripts/logs/jd_opencard43.log 2>&1
 #积分换话费
 43 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 领券中心签到
@@ -209,8 +209,6 @@
 30 2 * * * node /scripts/jd_priceProtect.js >> /scripts/logs/jd_priceProtect.log 2>&1
 # 东东世界
 15 3,16 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1
-# 东东玩家
-17 0-23/4 * * * node /scripts/jd_ddwj.js >> /scripts/logs/jd_ddwj.log 2>&1
 # 热血心跳,狂解压
 5 6,18 * * * node /scripts/jd_decompression.js >> /scripts/logs/jd_decompression.log 2>&1
 # 魔方
@@ -221,6 +219,14 @@
 37 0,11 * * * node /scripts/jd_jmzhl.js >> /scripts/logs/jd_jmzhl.log 2>&1
 # 荣耀新品传送挑战
 5 5,15 * 9,10 * node /scripts/jd_honour.js >> /scripts/logs/jd_honour.log 2>&1
+# 1+9
+4 4,17 * * * node /scripts/jd_yijiajiu.js >> /scripts/logs/jd_yijiajiu.log 2>&1
+# 海尔
+27 5,18 * * * node /scripts/jd_haier.js >> /scripts/logs/jd_haier.log 2>&1
+# 幸运扭蛋
+24 9 * 10-11 * node /scripts/jd_lucky_egg.js >> /scripts/logs/jd_lucky_egg.log 2>&1
+# 东东世界兑换
+0 0 * * * node /scripts/jd_ddworld_exchange.js >> /scripts/logs/jd_ddworld_exchange.log 2>&1
 #早起签到
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
