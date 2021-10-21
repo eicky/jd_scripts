@@ -233,3 +233,5 @@
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
 59 23 * * * python3 /scripts/jd_blueCoin.py >> /scripts/logs/jd_blueCoin.log 2>&1
+#东东超市限时抢京豆：入口-主页-京东超市-右侧
+11 0,9 * * * node /scripts/jd_fission.js.js >> /scripts/logs/jd_fission.log 2>&1
