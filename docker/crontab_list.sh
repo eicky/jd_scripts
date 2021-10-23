@@ -183,6 +183,8 @@
 38 1,20 * * * node /scripts/jd_opencard45.js >> /scripts/logs/jd_opencard45.log 2>&1
 #开卡46
 18 1,20  * * * node /scripts/jd_opencard46.js >> /scripts/logs/jd_opencard46.log 2>&1
+#开卡47
+26 2,22 * * * node /scripts/jd_opencard47.js >> /scripts/logs/jd_opencard47.log 2>&1
 #积分换话费
 43 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 领券中心签到
@@ -239,6 +241,8 @@
 0 0-18/6 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 # 手机狂欢城助力
 10 0,8 * * * node /scripts/jd_carnivalcity_help.js >> /scripts/logs/jd_carnivalcity_help.log 2>&1
+# 电竞预言家
+6 6 * * * node /scripts/jd_djyyj.js >> /scripts/logs/jd_djyyj.log 2>&1
 #早起签到
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
