@@ -97,17 +97,12 @@
 46 6,13,22 * * * node /scripts/jd_small_home.js >> /scripts/logs/jd_small_home.log 2>&1
 #美丽研究院
 16 9,15,17 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
-<<<<<<< HEAD
-#
+#京东试用
 30 10,18 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 #
 1 4,10,20 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
-=======
 #京喜牧场
 48 0-23/3 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
-#京东试用
-30 10 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
->>>>>>> main
 #领现金
 42 0-23/6 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 #赚金币
