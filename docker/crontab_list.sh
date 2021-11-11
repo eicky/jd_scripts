@@ -197,8 +197,8 @@
 16 0,21 8-30 11 * node /scripts/jd_opencard63.js >> /scripts/logs/jd_opencard63.log 2>&1
 #开卡64
 9 0,18 9-17 11 * node /scripts/jd_opencard64.js >> /scripts/logs/jd_opencard64.log 2>&1
-#开卡65
-19 4,18 4-11 11 * node /scripts/jd_opencard65.js >> /scripts/logs/jd_opencard65.log 2>&1
+#开卡67
+19 4,18 4-11 11 * node /scripts/jd_opencard67.js >> /scripts/logs/jd_opencard67.log 2>&1
 #开卡66
 8 19,21,23 * 11 * node /scripts/jd_opencard66.js >> /scripts/logs/jd_opencard66.log 2>&1
 #积分换话费
@@ -263,8 +263,6 @@
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
 # 京东超级盒子
 24 2,3 * * * node /scripts/jd_superbox.js >> /scripts/logs/jd_superbox.log 2>&1
-# 手机竞猜
-0 1,18 * * * node /scripts/jd_sjjc.js >> /scripts/logs/jd_sjjc.log 2>&1
 # 星推官
 22 3,19 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
 # 牛牛福利
