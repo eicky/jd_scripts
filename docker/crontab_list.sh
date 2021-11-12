@@ -163,20 +163,10 @@
 55 6 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
 #女装盲盒
 45 2,20 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
-#开卡50
-36 0 1-12 11 * node /scripts/jd_opencard50.js >> /scripts/logs/jd_opencard50.log 2>&1
 #开卡51
 8 1 1-13 11 * node /scripts/jd_opencard51.js >> /scripts/logs/jd_opencard51.log 2>&1
-#开卡52
-28 0 1-12 11 * node /scripts/jd_opencard52.js >> /scripts/logs/jd_opencard52.log 2>&1
-#开卡56
-29 3,21 1-12 11 * node /scripts/jd_opencard56.js >> /scripts/logs/jd_opencard56.log 2>&1
-#开卡57
-47 8 1-12 11 * node /scripts/jd_opencard57.js >> /scripts/logs/jd_opencard57.log 2>&1
 #开卡59
 30 10 1-13 11 * node /scripts/jd_opencard59.js >> /scripts/logs/jd_opencard59.log 2>&1
-#开卡62
-45 2,21 5-12 11 * node /scripts/jd_opencard62.js >> /scripts/logs/jd_opencard62.log 2>&1
 #开卡63
 16 0,21 8-30 11 * node /scripts/jd_opencard63.js >> /scripts/logs/jd_opencard63.log 2>&1
 #开卡64
@@ -223,8 +213,6 @@
 20 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
 # 京东极速版签到免单
 18 8,12,20 * * * node /scripts/jd_speed_signfree.js >> /scripts/logs/jd_speed_signfree.log 2>&1
-# 抢京豆
-0 0 * * * node /scripts/jd_angryBean.js >> /scripts/logs/jd_angryBean.log 2>&1
 # 极速版-发财挖宝
 20 1,9,16 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
 # 牛牛福利
