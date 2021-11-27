@@ -159,6 +159,12 @@
 45 2,20 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 #开卡63
 16 0,21 8-30 11 * node /scripts/jd_opencard63.js >> /scripts/logs/jd_opencard63.log 2>&1
+#开卡70
+47 1 23-30 11 * node /scripts/jd_opencard70.js >> /scripts/logs/jd_opencard70.log 2>&1
+#开卡71
+47 2 25-30 11 * node /scripts/jd_opencard71.js >> /scripts/logs/jd_opencard71.log 2>&1
+#开卡72
+47 3 25-30,1 11,12 * node /scripts/jd_opencard72.js >> /scripts/logs/jd_opencard72.log 2>&1
 #积分换话费
 43 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 领券中心签到
@@ -217,8 +223,8 @@
 1 7,12,19 * * * node /scripts/jd_beauty_ex.js >> /scripts/logs/jd_beauty_ex.log 2>&1
 #锦鲤
 5 0 * * * node /scripts/jd_angryKoi.js >> /scripts/logs/jd_angryKoi.log 2>&1
-#京喜欢乐砍
-55 3,20 * * * python3 /jd/scripts/jd_jxhlk.py >> /jd/log/jd_jxhlk.log 2>&1
+#京豆兑换为喜豆
+33 9 * * * node /scripts/jd_exchangejxbeans.js >> /scripts/logs/jd_exchangejxbeans.log 2>&1
 #早起签到
 1 6,7 * * * python3 /scripts/jd_zqfl.py >> /scripts/logs/jd_zqfl.log 2>&1
 #
