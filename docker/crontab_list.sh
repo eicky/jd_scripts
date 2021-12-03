@@ -157,12 +157,12 @@
 55 6 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
 #女装盲盒
 45 2,20 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
-#开卡70
-47 1 23-30 11 * node /scripts/jd_opencard70.js >> /scripts/logs/jd_opencard70.log 2>&1
-#开卡71
-47 2 25-30 11 * node /scripts/jd_opencard71.js >> /scripts/logs/jd_opencard71.log 2>&1
-#开卡72
-47 3 25-30,1 11,12 * node /scripts/jd_opencard72.js >> /scripts/logs/jd_opencard72.log 2>&1
+#开卡74
+47 3 25-30,1 11,12 * node /scripts/jd_opencard74.js >> /scripts/logs/jd_opencard74.log 2>&1
+#开卡75
+47 2 1-15 12 * node /scripts/jd_opencard75.js >> /scripts/logs/jd_opencard75.log 2>&1
+#开卡76
+47 3 3-12 12 * node /scripts/jd_opencard76.js >> /scripts/logs/jd_opencard76.log 2>&1
 #积分换话费
 43 5,17 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 领券中心签到
@@ -221,6 +221,8 @@
 1 7,12,19 * * * node /scripts/jd_beauty_ex.js >> /scripts/logs/jd_beauty_ex.log 2>&1
 #锦鲤
 5 0 * * * node /scripts/jd_angryKoi.js >> /scripts/logs/jd_angryKoi.log 2>&1
+#京东赚京豆一分钱抽奖
+10 0 * * * node /scripts/jd_lottery_drew.js >> /scripts/logs/jd_lottery_drew.log 2>&1
 #京东保价
 41 23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 #京豆兑换为喜豆
