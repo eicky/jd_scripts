@@ -2,7 +2,7 @@
 name: sync-yuannian1112-scripts
 on:
   schedule:
-    - cron: '45 */2 * * *'
+    - cron: '45 */8 * * *'
   workflow_dispatch:
   watch:
     types: started
